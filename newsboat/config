@@ -1,0 +1,11 @@
+text-width 80
+pager /usr/bin/less -f
+
+bind-key j down
+bind-key k up
+
+bind-key DOWN next-feed
+bind-key UP prev-feed
+
+bind-key G end
+bind-key g home
