@@ -57,6 +57,7 @@ nnoremap <S-F7> :r!xclip -o<CR>
 
 noremap <C-L> 20zl
 noremap <C-H> 20zh
+nnoremap <C-P> :FZF<CR>
 "}}}
 
 " Folding {{{
