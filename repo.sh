@@ -27,6 +27,7 @@ $HOME/opt/surf/config.h,surf/config.h
 /etc/udev/rules.d/90-monitor.rules,rules/udev/rules.d/90-monitor.rules
 /etc/udev/rules.d/90-backlight.rules,rules/udev/rules.d/90-backlight.rules
 /etc/X11/xorg.conf.d/00-keyboard.conf,rules/X11/xorg.conf.d/00-keyboard.conf
+/etc/polkit-1/rules.d/00-allow-user.rules,polkit-1/rules.d/00-allow-user.rules
 "
 
 for F in $DOTFILES; do
