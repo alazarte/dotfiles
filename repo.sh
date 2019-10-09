@@ -15,6 +15,7 @@ $HOME/.config/conky/conky.conf,config/conky/conky.conf
 $HOME/.config/user-dirs.dirs,config/user-dirs.dirs
 $HOME/.newsboat/config,newsboat/config
 $HOME/.newsboat/urls,newsboat/urls
+$HOME/.vim/colors/boring.vim,vim/colors/boring.vim
 
 $HOME/opt/dwm/config.mk,dwm/config.mk
 $HOME/opt/dwm/config.h,dwm/config.h
