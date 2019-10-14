@@ -11,7 +11,7 @@ BRIGHTNESS_MAX_FILE='/sys/class/backlight/intel_backlight/max_brightness'
 NOTES_PATH=$HOME/.notes
 
 # mon
-PRIMARYMON=HDMI1
+PRIMARYMON=$([[ `xrandr | grep -E " HDMI connected"` ]] && echo HDMI || echo DP1)
 NOTEMON=eDP1
 
 # }}}
@@ -106,6 +106,7 @@ case $1 in
         xrandr --output $PRIMARYMON --left-of $NOTEMON
         ;;
     s|single)
+        xrandr --output $NOTEMON --auto
         xrandr --output $PRIMARYMON --off
         ;;
     x|duplicate)
