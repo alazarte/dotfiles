@@ -1,0 +1,71 @@
+syntax on
+
+" Setters {{{
+
+set tabstop=4
+set shiftwidth=4
+set autoindent
+set expandtab
+
+set wildmenu
+set wildmode=list:longest,full
+
+set relativenumber
+set number
+
+" start search while typing
+set incsearch
+set hlsearch
+
+" show trailing and not wanted blank characters
+set listchars=tab:>-,nbsp:_,trail:.
+set textwidth=80
+
+" hidden buffer to hold changes in current file with changes
+set hidden
+
+set clipboard=unnamedplus
+
+" }}}
+
+" Explorer Configuration {{{
+
+" remove banner in explore
+let g:netrw_banner = 0
+
+" }}}
+
+" Mapping {{{
+
+" New line ctrl+j | k
+nnoremap <C-k> O<Esc>j
+nnoremap <C-j> o<Esc>k
+" Faster scrolling
+nnoremap <C-d> 5<C-e>
+nnoremap <C-u> 5<C-y>
+
+nnoremap <F6> :setlocal spell! spelllang=en_us<CR>
+
+" Clipboard
+noremap <F7> :w !xclip -selection clipboard<CR><CR>
+nnoremap <S-F7> :r!xclip -o<CR>
+
+noremap <C-L> 20zl
+noremap <C-H> 20zh
+nnoremap <C-P> :FZF<CR>
+"}}}
+
+" Folding {{{
+
+set foldenable
+set foldlevel=0
+set foldcolumn=0
+set foldmethod=marker           " detect triple-{ style fold markers
+
+" }}}
+
+" Highlight {{{
+
+colorscheme boring
+
+" }}}

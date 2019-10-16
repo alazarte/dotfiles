@@ -6,7 +6,7 @@
 DOTFILES="
 $HOME/.tmux.conf,.tmux.conf
 $HOME/.xinitrc,.xinitrc
-$HOME/.vimrc,.vimrc
+$HOME/.vim/vimrc,vim/vimrc
 $HOME/.bashrc,.bashrc
 $HOME/.bash_variables,.bash_variables
 $HOME/.bash_functions,.bash_functions
