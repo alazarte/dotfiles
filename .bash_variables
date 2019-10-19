@@ -6,4 +6,4 @@ export WIP_DIR=$HOME/dev/wip
 export TERM=tmux-256color
 export PATH_TIL=$HOME/var/til
 export NOTES_FILE=$HOME/var/notes.txt
-export BROWSER="surf -c /tmp/cookies.surf -d"
+export BROWSER=firefox
