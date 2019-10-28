@@ -2,9 +2,8 @@ syntax on
 
 " Setters {{{
 
-set tabstop=4
+set softtabstop=4
 set shiftwidth=4
-set autoindent
 set expandtab
 
 set wildmenu
@@ -18,6 +17,7 @@ set incsearch
 set hlsearch
 
 " show trailing and not wanted blank characters
+set list
 set listchars=tab:>-,nbsp:_,trail:.
 set textwidth=80
 

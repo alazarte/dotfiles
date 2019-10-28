@@ -7,3 +7,5 @@ export TERM=tmux-256color
 export PATH_TIL=$HOME/var/til
 export NOTES_FILE=$HOME/var/notes.txt
 export BROWSER=firefox
+export GOPATH=$(go env GOPATH)
+export PATH=$PATH:$GOPATH/bin

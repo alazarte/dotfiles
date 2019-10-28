@@ -31,17 +31,24 @@ $HOME/opt/surf/config.h,surf/config.h
 "
 
 for F in $DOTFILES; do
-    OF="`echo $F | awk -F, '{print $1}'`"
-    DF=`echo $F | awk -F, '{print $2}'`
+    # local file
+    LF="`echo $F | awk -F, '{print $1}'`"
+    # remote file
+    RF=`echo $F | awk -F, '{print $2}'`
     case $1 in
         apply)
-            echo $DF to $OF
-            cp $DF $OF || true
+            echo $RF to $LF
+            cp $RF $LF || true
         ;;
         update)
-            echo $OF to $DF
-            mkdir -p $(dirname $DF)
-            cp $OF $DF
+            echo $LF to $RF
+            mkdir -p $(dirname $RF)
+            cp $LF $RF
+        ;;
+        # diff local before apply
+        # to check diff with remote, git status before push
+        diff)
+            diff $LF $RF
         ;;
     esac
 done

@@ -89,37 +89,4 @@ function notes
 
 # }}}
 
-# {{{ mon
-function mon
-{
-PRIMARYMON=$([[ `xrandr | grep -E " HDMI connected"` ]] && echo HDMI || echo DP1)
-case $1 in
-    p|principal)
-        xrandr --output eDP1 --off
-        ;;
-    l|list)
-        xrandr --listmonitors
-        ;;
-    d|double)
-        xrandr --output $PRIMARYMON --off
-        xrandr --output $PRIMARYMON --auto
-        xrandr --output $PRIMARYMON --left-of $NOTEMON
-        ;;
-    s|single)
-        xrandr --output $NOTEMON --auto
-        xrandr --output $PRIMARYMON --off
-        ;;
-    x|duplicate)
-        xrandr --output $PRIMARYMON --off
-        xrandr --output $PRIMARYMON --same-as $NOTEMON
-        xrandr --output $PRIMARYMON --scale-from 1366x768
-        ;;
-    h|help)
-        printf "Usage: mon [commands]\n"
-        printf "\tl list\tList monitors\n"
-        printf "\td double\tTwo monitors setup\n"
-        printf "\ts single\tOnly notebook monitor\n"
-        ;;
-esac
-}
-# }}}
+# mon replaced by autorandr
