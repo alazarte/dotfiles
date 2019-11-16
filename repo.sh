@@ -37,6 +37,7 @@ for F in $DOTFILES; do
     RF=`echo $F | awk -F, '{print $2}'`
     case $1 in
         apply)
+            mkdir -p $(dirname $LF)
             echo $RF to $LF
             cp $RF $LF || true
         ;;
@@ -48,7 +49,7 @@ for F in $DOTFILES; do
         # diff local before apply
         # to check diff with remote, git status before push
         diff)
-            diff $LF $RF
+            diff --color $LF $RF
         ;;
     esac
 done

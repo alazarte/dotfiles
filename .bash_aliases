@@ -10,4 +10,3 @@ alias ix="curl -F 'f:1=<-' -F 'read:1=2' ix.io"
 alias webget='wget --mirror --convert-links --adjust-extension --page-requisites --no-parent'
 alias pihole='docker exec pihole pihole'
 alias tf='terraform'
-alias ng='docker run --rm -ti -v $PWD:/ng -p 4200:4200 --name ng-cli ng-cli:latest'
