@@ -30,26 +30,40 @@ $HOME/opt/surf/config.h,surf/config.h
 /etc/polkit-1/rules.d/00-allow-user.rules,polkit-1/rules.d/00-allow-user.rules
 "
 
-for F in $DOTFILES; do
-    # local file
-    LF="`echo $F | awk -F, '{print $1}'`"
-    # remote file
-    RF=`echo $F | awk -F, '{print $2}'`
-    case $1 in
-        apply)
-            mkdir -p $(dirname $LF)
-            echo $RF to $LF
-            cp $RF $LF || true
-        ;;
-        update)
-            echo $LF to $RF
-            mkdir -p $(dirname $RF)
-            cp $LF $RF
-        ;;
-        # diff local before apply
-        # to check diff with remote, git status before push
-        diff)
-            diff --color $LF $RF
-        ;;
-    esac
-done
+function main {
+    echo "running main"
+    for F in $DOTFILES; do
+        # local file
+        LF="`echo $F | awk -F, '{print $1}'`"
+        # remote file
+        RF=`echo $F | awk -F, '{print $2}'`
+        case $1 in
+            apply)
+                log "going to create link $LF for $RF"
+                basepath=`dirname $LF`
+                if [ ! -d $basepath ] ; then
+                    log "$basepath does not exists, creating it..."
+                    mkdir -p $basepath
+                fi
+                mkdir -p $(dirname $LF)
+                if [ -f $LF ] ; then
+                    log "backing up $LF to $backup_path"
+                    backup $LF
+                fi
+                if [ -h $LF ] ; then
+                    log "$LF is a link, removing it..."
+                    rm $LF
+                fi
+                log "link $RF to $LF"
+                ln -sf $PWD/$RF $LF
+            ;;
+        esac
+    done
+}
+
+function log {
+    timestamp=`date +%Y-%m-%d\ %H:%M`
+    echo "[${timestamp}] ${@}"
+}
+
+main "${@}"
