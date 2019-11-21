@@ -3,6 +3,8 @@
 # format
 # [origin file]:[destination file]
 
+backup_path=${BACKUP_PATH:-$PWD/backup}
+
 DOTFILES="
 $HOME/.tmux.conf,.tmux.conf
 $HOME/.xinitrc,.xinitrc
@@ -15,7 +17,7 @@ $HOME/.config/conky/conky.conf,config/conky/conky.conf
 $HOME/.config/user-dirs.dirs,config/user-dirs.dirs
 $HOME/.newsboat/config,newsboat/config
 $HOME/.newsboat/urls,newsboat/urls
-$HOME/.vim/colors/boring.vim,vim/colors/boring.vim
+$HOME/.vim/colors/simple.vim,vim/colors/simple.vim
 
 $HOME/opt/dwm/config.mk,dwm/config.mk
 $HOME/opt/dwm/config.h,dwm/config.h
@@ -45,14 +47,16 @@ function main {
                     log "$basepath does not exists, creating it..."
                     mkdir -p $basepath
                 fi
-                mkdir -p $(dirname $LF)
-                if [ -f $LF ] ; then
-                    log "backing up $LF to $backup_path"
-                    backup $LF
-                fi
                 if [ -h $LF ] ; then
                     log "$LF is a link, removing it..."
                     rm $LF
+                elif [ -f $LF ] ; then
+                    log "$LF is a file, back up..."
+                    backup $LF
+                    if [ $? -ne 0 ] ; then
+                        log "backup failed!"
+                        exit
+                    fi
                 fi
                 log "link $RF to $LF"
                 ln -sf $PWD/$RF $LF
@@ -61,8 +65,18 @@ function main {
     done
 }
 
+timestamp_command='date +%Y-%m-%d\ %H:%M'
+
+function backup {
+    filename=`basename $1`
+    timestamp=`eval $timestamp_command | sed 's/ /_/'`
+    backup_filepath="${backup_path}/${filename}_${timestamp}"
+    log "backup $1 to $backup_filepath"
+    mv $1 $backup_filepath
+}
+
 function log {
-    timestamp=`date +%Y-%m-%d\ %H:%M`
+    timestamp=`eval $timestamp_command`
     echo "[${timestamp}] ${@}"
 }
 
