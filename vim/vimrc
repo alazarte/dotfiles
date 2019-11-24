@@ -2,6 +2,8 @@ syntax on
 
 " Setters {{{
 
+set nocp
+
 set softtabstop=4
 set shiftwidth=4
 set expandtab
@@ -19,7 +21,6 @@ set hlsearch
 " show trailing and not wanted blank characters
 set list
 set listchars=tab:>-,nbsp:_,trail:.
-set textwidth=80
 
 " hidden buffer to hold changes in current file with changes
 set hidden
@@ -32,6 +33,7 @@ set clipboard=unnamedplus
 
 " remove banner in explore
 let g:netrw_banner = 0
+let g:netrw_liststyle = 3
 
 " }}}
 
@@ -53,6 +55,7 @@ nnoremap <S-F7> :r!xclip -o<CR>
 noremap <C-L> 20zl
 noremap <C-H> 20zh
 nnoremap <C-P> :FZF<CR>
+
 "}}}
 
 " Folding {{{
@@ -66,6 +69,6 @@ set foldmethod=marker           " detect triple-{ style fold markers
 
 " Highlight {{{
 
-colorscheme boring
+colorscheme simple
 
 " }}}
