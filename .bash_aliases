@@ -10,3 +10,4 @@ alias ix="curl -F 'f:1=<-' -F 'read:1=2' ix.io"
 alias webget='wget --mirror --convert-links --adjust-extension --page-requisites --no-parent'
 alias pihole='docker exec pihole pihole'
 alias tf='terraform'
+alias noise='play -q -c 2 --null synth brownnoise band -n 2500 4000 tremolo 20 .1 reverb 50'
