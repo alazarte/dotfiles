@@ -2,7 +2,7 @@ syntax on
 
 " Setters {{{
 
-set nocp
+set nocompatible
 
 set softtabstop=4
 set shiftwidth=4
@@ -26,6 +26,9 @@ set listchars=tab:>-,nbsp:_,trail:.
 set hidden
 
 set clipboard=unnamedplus
+
+set autochdir
+set tags=tags;
 
 " }}}
 
@@ -70,5 +73,21 @@ set foldmethod=marker           " detect triple-{ style fold markers
 " Highlight {{{
 
 colorscheme simple
+
+" }}}
+
+" {{{ Restore cursor
+
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
 
 " }}}
