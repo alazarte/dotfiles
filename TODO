@@ -1,0 +1,2 @@
+refresh tmux config keybind
+replace tmux's ctrl+b with ctrl+w and integrate with vim
