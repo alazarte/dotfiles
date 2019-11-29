@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "xos4 Terminus-12";
+static char *font = "Terminus-12";
 static int borderpx = 2;
 
 /*
@@ -223,6 +223,7 @@ static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;
  * modifier, set to 0 to not use it.
  */
 static uint forceselmod = ShiftMask;
+static uint forcemousemod = ShiftMask;
 
 /*
  * This is the huge key array which defines all compatibility to the Linux
