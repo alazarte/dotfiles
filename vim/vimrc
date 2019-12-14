@@ -1,15 +1,27 @@
-syntax on
+syntax enable
 
-" Setters {{{
+" Vundle config {{{
 
 set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'christoomey/vim-tmux-navigator'
+call vundle#end()
+filetype plugin indent on
+
+" }}}
+
+" Setters {{{
 
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 
 set wildmenu
-set wildmode=list:longest,full
+"set wildmode=list:longest,full
 
 set relativenumber
 set number
@@ -27,8 +39,11 @@ set hidden
 
 set clipboard=unnamedplus
 
-set autochdir
-set tags=tags;
+" no autochdir
+set tags=./tags;
+
+" recursive finding path
+set path+=**
 
 " }}}
 
@@ -42,22 +57,21 @@ let g:netrw_liststyle = 3
 
 " Mapping {{{
 
-" New line ctrl+j | k
-nnoremap <C-k> O<Esc>j
-nnoremap <C-j> o<Esc>k
 " Faster scrolling
-nnoremap <C-d> 5<C-e>
-nnoremap <C-u> 5<C-y>
-
-nnoremap <F6> :setlocal spell! spelllang=en_us<CR>
+nmap <C-d> 5<C-e>
+nmap <C-u> 5<C-y>
 
 " Clipboard
-noremap <F7> :w !xclip -selection clipboard<CR><CR>
-nnoremap <S-F7> :r!xclip -o<CR>
+"" TODO fix this
+map ,c :w !xclip -selection clipboard<CR><CR>
+map ,C :r!xclip -o<CR>
 
-noremap <C-L> 20zl
-noremap <C-H> 20zh
-nnoremap <C-P> :FZF<CR>
+" TODO replace with vim's find
+" nmap <C-P> :FZF<CR>
+
+map ,s :setlocal spell! spelllang=en_us<cr>
+map ,v <esc>:e ~/.vim/vimrc<cr>
+map ,l <esc>:so ~/.vim/vimrc<cr>
 
 "}}}
 
@@ -89,5 +103,15 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
+
+" }}}
+
+" Commands {{{
+
+command! MakeTags ! ctags -R .
+command! GF ! go fmt ./...
+command! GR ! go run %
+map ,f <esc>:! go fmt ./...<cr>
+map ,r <esc>:! go run %<cr>
 
 " }}}
