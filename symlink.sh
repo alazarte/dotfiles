@@ -7,6 +7,7 @@ files_list="
 $HOME/.tmux.conf,.tmux.conf
 $HOME/.xinitrc,.xinitrc
 $HOME/.vim/vimrc,vim/vimrc
+$HOME/.vifm/vifmrc,vifm/vifmrc
 $HOME/.bashrc,.bashrc
 $HOME/.bash_variables,.bash_variables
 $HOME/.bash_functions,.bash_functions
