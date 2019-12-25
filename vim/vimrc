@@ -19,6 +19,7 @@ filetype plugin indent on
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+set showcmd
 
 set wildmenu
 "set wildmode=list:longest,full
@@ -45,6 +46,8 @@ set tags=./tags;
 " recursive finding path
 set path+=**
 
+set background=dark
+
 " }}}
 
 " Explorer Configuration {{{
@@ -69,9 +72,12 @@ map ,C :r!xclip -o<CR>
 " TODO replace with vim's find
 " nmap <C-P> :FZF<CR>
 
+map ,w :w ! diff % -<cr>
 map ,s :setlocal spell! spelllang=en_us<cr>
 map ,v <esc>:e ~/.vim/vimrc<cr>
 map ,l <esc>:so ~/.vim/vimrc<cr>
+
+cnoremap w!! w !sudo tee % >/dev/null
 
 "}}}
 
@@ -86,7 +92,7 @@ set foldmethod=marker           " detect triple-{ style fold markers
 
 " Highlight {{{
 
-colorscheme simple
+colorscheme spacecamp
 
 " }}}
 
