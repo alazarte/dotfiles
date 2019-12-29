@@ -1,5 +1,3 @@
-syntax enable
-
 " Vundle config {{{
 
 set nocompatible
@@ -9,25 +7,26 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-sleuth'
+Plugin 'vim-scripts/tabpagecd'
 call vundle#end()
 filetype plugin indent on
 
 " }}}
 
+" Letters {{{
+
+let mapleader = ","
+
+" }}}
+
 " Setters {{{
-
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-
-set wildmenu
-"set wildmode=list:longest,full
 
 set relativenumber
 set number
 
 " start search while typing
-set incsearch
 set hlsearch
 
 " show trailing and not wanted blank characters
@@ -37,13 +36,19 @@ set listchars=tab:>-,nbsp:_,trail:.
 " hidden buffer to hold changes in current file with changes
 set hidden
 
-set clipboard=unnamedplus
-
-" no autochdir
 set tags=./tags;
 
-" recursive finding path
-set path+=**
+" . current directory for file
+" current directory ...
+" ** recursive
+set path=.,,**
+
+" TODO choose a better termwinkey
+set termwinkey=<C-E>
+
+set showcmd
+
+set scroll=10
 
 " }}}
 
@@ -58,20 +63,22 @@ let g:netrw_liststyle = 3
 " Mapping {{{
 
 " Faster scrolling
-nmap <C-d> 5<C-e>
-nmap <C-u> 5<C-y>
+"nmap <C-d> 5<C-e>
+"nmap <C-u> 5<C-y>
 
 " Clipboard
 "" TODO fix this
-map ,c :w !xclip -selection clipboard<CR><CR>
-map ,C :r!xclip -o<CR>
+map <leader>c :w !xclip -selection clipboard<CR><CR>
+map <leader>C :r!xclip -o<CR>
 
 " TODO replace with vim's find
 " nmap <C-P> :FZF<CR>
 
-map ,s :setlocal spell! spelllang=en_us<cr>
-map ,v <esc>:e ~/.vim/vimrc<cr>
-map ,l <esc>:so ~/.vim/vimrc<cr>
+map <leader>s :setlocal spell! spelllang=en_us<cr>
+map <leader>v <esc>:e ~/.vim/vimrc<cr>
+map <leader>l <esc>:so ~/.vim/vimrc<cr>
+map <leader>l <esc>:so ~/.vim/vimrc<cr>
+map <leader>cd <esc>:lcd %:h<cr>
 
 "}}}
 
@@ -84,7 +91,7 @@ set foldmethod=marker           " detect triple-{ style fold markers
 
 " }}}
 
-" Highlight {{{
+" Colorscheme {{{
 
 colorscheme simple
 
@@ -111,7 +118,5 @@ augroup END
 command! MakeTags ! ctags -R .
 command! GF ! go fmt ./...
 command! GR ! go run %
-map ,f <esc>:! go fmt ./...<cr>
-map ,r <esc>:! go run %<cr>
 
 " }}}
