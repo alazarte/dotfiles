@@ -9,3 +9,4 @@ export NOTES_FILE=$HOME/var/notes.txt
 export BROWSER=surf
 export GOPATH=$(go env GOPATH)
 export PATH=$PATH:$GOPATH/bin
+export XDG_CONFIG_HOME=$HOME/.config

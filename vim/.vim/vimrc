@@ -6,9 +6,10 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-sleuth'
+Plugin 'tpope/vim-commentary'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/tabpagecd'
 call vundle#end()
 filetype plugin indent on
@@ -17,12 +18,14 @@ filetype plugin indent on
 
 " Letters {{{
 
+let g:netrw_keepdir=0
 let mapleader = ","
 
 " }}}
 
 " Setters {{{
 
+set showcmd
 set relativenumber
 set number
 
@@ -49,6 +52,8 @@ set termwinkey=<C-E>
 set showcmd
 
 set scroll=10
+
+set background=dark
 
 " }}}
 
@@ -80,6 +85,8 @@ map <leader>l <esc>:so ~/.vim/vimrc<cr>
 map <leader>l <esc>:so ~/.vim/vimrc<cr>
 map <leader>cd <esc>:lcd %:h<cr>
 
+cnoremap w!! w !sudo tee % >/dev/null
+
 "}}}
 
 " Folding {{{
@@ -93,7 +100,7 @@ set foldmethod=marker           " detect triple-{ style fold markers
 
 " Colorscheme {{{
 
-colorscheme simple
+colorscheme spacecamp
 
 " }}}
 
