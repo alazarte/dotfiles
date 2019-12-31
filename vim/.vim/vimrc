@@ -32,12 +32,10 @@ set number
 " start search while typing
 set hlsearch
 
-" show trailing and not wanted blank characters
-set list
-set listchars=tab:>-,nbsp:_,trail:.
-
 " hidden buffer to hold changes in current file with changes
 set hidden
+
+set list
 
 set tags=./tags;
 
@@ -47,7 +45,7 @@ set tags=./tags;
 set path=.,,**
 
 " TODO choose a better termwinkey
-set termwinkey=<C-E>
+set termwinkey=<C-A>
 
 set showcmd
 
@@ -68,8 +66,6 @@ let g:netrw_liststyle = 3
 " Mapping {{{
 
 " Faster scrolling
-"nmap <C-d> 5<C-e>
-"nmap <C-u> 5<C-y>
 
 " Clipboard
 "" TODO fix this
@@ -79,11 +75,10 @@ map <leader>C :r!xclip -o<CR>
 " TODO replace with vim's find
 " nmap <C-P> :FZF<CR>
 
-map <leader>s :setlocal spell! spelllang=en_us<cr>
-map <leader>v <esc>:e ~/.vim/vimrc<cr>
-map <leader>l <esc>:so ~/.vim/vimrc<cr>
-map <leader>l <esc>:so ~/.vim/vimrc<cr>
-map <leader>cd <esc>:lcd %:h<cr>
+map <leader>spell :setlocal spell! spelllang=en_us<cr>
+map <leader>vrc <esc>:e ~/.vim/vimrc<cr>
+map <leader>load <esc>:so ~/.vim/vimrc<cr>
+map <leader>lcd <esc>:lcd %:h<cr>
 
 cnoremap w!! w !sudo tee % >/dev/null
 
@@ -100,7 +95,7 @@ set foldmethod=marker           " detect triple-{ style fold markers
 
 " Colorscheme {{{
 
-colorscheme spacecamp
+colorscheme default
 
 " }}}
 
