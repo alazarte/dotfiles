@@ -1,2 +1,2 @@
 slstatus &
-xrdb -merge $HOME/.Xresources ; redshift -PO 3000 ; exec dwm
+xrdb -merge $HOME/.Xresources ; xsct 3500 ; exec dwm
