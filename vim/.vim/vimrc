@@ -10,7 +10,7 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-commentary'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'vim-scripts/tabpagecd'
+Plugin 'vim-scripts/AfterColors.vim'
 call vundle#end()
 filetype plugin indent on
 
