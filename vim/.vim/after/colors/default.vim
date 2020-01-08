@@ -4,3 +4,5 @@ hi Search           ctermfg=black  ctermbg=yellow
 hi Pmenu            ctermfg=black   ctermbg=white
 hi PmenuSel         ctermfg=white   ctermbg=black   cterm=bold
 hi Folded           ctermbg=none
+hi SpellBad         ctermfg=white   ctermbg=red
+hi SpellRare        ctermfg=black   ctermbg=cyan
