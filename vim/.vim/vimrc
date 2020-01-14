@@ -35,9 +35,10 @@ set hlsearch
 " hidden buffer to hold changes in current file with changes
 set hidden
 
+" show trailing chars
 set list
 
-set tags=./tags;
+set tags=tags;
 
 " . current directory for file
 " current directory ...
@@ -75,10 +76,11 @@ map <leader>C :r!xclip -o<CR>
 " TODO replace with vim's find
 " nmap <C-P> :FZF<CR>
 
-map <leader>spell :setlocal spell! spelllang=en_us<cr>
-map <leader>vrc <esc>:e ~/.vim/vimrc<cr>
-map <leader>load <esc>:so ~/.vim/vimrc<cr>
-map <leader>lcd <esc>:lcd %:h<cr>
+map <leader>s :setlocal spell! spelllang=en_us<cr>
+map <leader>v <esc>:e ~/.vim/vimrc<cr>
+map <leader>l <esc>:so ~/.vim/vimrc<cr>
+map <leader>c <esc>:lcd %:h<cr>
+map <leader>jq <esc>:%!jq<cr>
 
 cnoremap w!! w !sudo tee % >/dev/null
 
@@ -122,6 +124,21 @@ augroup END
 
 command! MakeTags ! ctags -R .
 command! GF ! go fmt ./...
-command! GR ! go run %
+command! GR ! go run %:p
+
+" }}}
+
+" Status Line {{{
+
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'['.l:branchname.']':''
+endfunction
+
+set statusline=%y\ %f\ %m\ %r\ %w\ %q\ %=%l:%c
 
 " }}}
