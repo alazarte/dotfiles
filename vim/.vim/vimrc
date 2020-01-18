@@ -15,14 +15,12 @@ call vundle#end()
 filetype plugin indent on
 
 " }}}
-
 " Letters {{{
 
 let g:netrw_keepdir=0
 let mapleader = ","
 
 " }}}
-
 " Setters {{{
 
 set showcmd
@@ -55,7 +53,6 @@ set scroll=10
 set background=dark
 
 " }}}
-
 " Explorer Configuration {{{
 
 " remove banner in explore
@@ -63,7 +60,6 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 
 " }}}
-
 " Mapping {{{
 
 " Faster scrolling
@@ -88,7 +84,6 @@ map j gj
 map k gk
 
 "}}}
-
 " Folding {{{
 
 set foldenable
@@ -97,13 +92,11 @@ set foldcolumn=0
 set foldmethod=marker           " detect triple-{ style fold markers
 
 " }}}
-
 " Colorscheme {{{
 
 colorscheme default
 
 " }}}
-
 " {{{ Restore cursor
 
 function! ResCur()
@@ -119,7 +112,6 @@ augroup resCur
 augroup END
 
 " }}}
-
 " Commands {{{
 
 command! MakeTags ! ctags -R .
@@ -127,7 +119,6 @@ command! GF ! go fmt ./...
 command! GR ! go run %:p
 
 " }}}
-
 " Status Line {{{
 
 set statusline=%y\ %f\ %m\ %r\ %w\ %q\ %=%l:%c
