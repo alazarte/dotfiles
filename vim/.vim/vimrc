@@ -9,7 +9,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-commentary'
-Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/AfterColors.vim'
 call vundle#end()
 filetype plugin indent on
@@ -46,11 +45,14 @@ set path=.,,**
 " TODO choose a better termwinkey
 set termwinkey=<C-A>
 
-set showcmd
-
 set scroll=10
 
 set background=dark
+
+" write and load changes
+set autowriteall
+" this probably won't work as expected
+set autoread
 
 " }}}
 " Explorer Configuration {{{
@@ -62,26 +64,47 @@ let g:netrw_liststyle = 3
 " }}}
 " Mapping {{{
 
-" Faster scrolling
-
 " Clipboard
-"" TODO fix this
+" TODO fix this
 map <leader>c :w !xclip -selection clipboard<CR><CR>
 map <leader>C :r!xclip -o<CR>
 
-" TODO replace with vim's find
-" nmap <C-P> :FZF<CR>
-
+" spelling
 map <leader>s :setlocal spell! spelllang=en_us<cr>
+
+" vim config
 map <leader>v <esc>:e ~/.vim/vimrc<cr>
 map <leader>l <esc>:so ~/.vim/vimrc<cr>
-map <leader>h <esc>:lcd %:h<cr>
+
+" set path to current file in current tab only
+map <leader>h <esc>:lcd %:h<cr>:pwd<cr>
+
+" parsing single line json
 map <leader>jq <esc>:%!jq<cr>
 
+" generate tags
+nmap <leader>t :MakeTags<cr>
+
+" save as root
 cnoremap w!! w !sudo tee % >/dev/null
 
+" navigate in multi-single lines
 map j gj
 map k gk
+
+" terminal mappings
+tmap <c-j> <c-a>j
+tmap <c-k> <c-a>k
+
+" match c-a term map
+nnoremap <c-a> <c-w>
+
+" navigation with ctrl+{movement}
+map <c-j> <c-a>j
+map <c-k> <c-a>k
+
+" gf open file even if it does not exists
+map gf :e <cfile><CR>
 
 "}}}
 " Folding {{{
