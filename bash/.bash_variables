@@ -1,5 +1,4 @@
 export PATH=$HOME/bin:$PATH
-export PS1="$ "
 export EDITOR=/usr/bin/vim
 export MANWIDTH=80
 export WIP_DIR=$HOME/dev/wip
@@ -7,6 +6,6 @@ export TERM=tmux-256color
 export PATH_TIL=$HOME/var/til
 export NOTES_FILE=$HOME/var/notes.txt
 export BROWSER=surf
-export GOPATH=$(go env GOPATH)
-export PATH=$PATH:$GOPATH/bin
 export XDG_CONFIG_HOME=$HOME/.config
+export GOPATH=`go env GOPATH`
+export PATH=$PATH:$GOPATH/bin

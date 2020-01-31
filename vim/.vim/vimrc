@@ -10,6 +10,7 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-scripts/AfterColors.vim'
+Plugin 'junegunn/goyo.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -54,12 +55,14 @@ set autowriteall
 " this probably won't work as expected
 set autoread
 
+set ttyfast
+
 " }}}
 " Explorer Configuration {{{
 
 " remove banner in explore
 let g:netrw_banner = 0
-let g:netrw_liststyle = 3
+let g:netrw_liststyle = 4
 
 " }}}
 " Mapping {{{
@@ -102,6 +105,8 @@ nnoremap <c-a> <c-w>
 " navigation with ctrl+{movement}
 map <c-j> <c-a>j
 map <c-k> <c-a>k
+map <c-h> <c-a>h
+map <c-l> <c-a>l
 
 " gf open file even if it does not exists
 map gf :e <cfile><CR>
@@ -120,21 +125,6 @@ set foldmethod=marker           " detect triple-{ style fold markers
 colorscheme default
 
 " }}}
-" {{{ Restore cursor
-
-function! ResCur()
-  if line("'\"") <= line("$")
-    normal! g`"
-    return 1
-  endif
-endfunction
-
-augroup resCur
-  autocmd!
-  autocmd BufWinEnter * call ResCur()
-augroup END
-
-" }}}
 " Commands {{{
 
 command! MakeTags ! ctags -R .
@@ -146,4 +136,8 @@ command! GR ! go run %:p
 
 set statusline=%y\ %f\ %m\ %r\ %w\ %q\ %=%l:%c
 
+" }}}
+" autocmds {{{
+autocmd TerminalOpen * :set nonumber
+autocmd TerminalOpen * :set norelativenumber
 " }}}
