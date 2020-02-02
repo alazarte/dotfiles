@@ -1,2 +1,2 @@
 slstatus &
-xrdb -merge $HOME/.Xresources ; xsct 3500 ; exec dwm
+xrdb -merge $HOME/.Xresources ; sct 3500 ; exec dwm

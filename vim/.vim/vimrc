@@ -46,6 +46,7 @@ set path=.,,**
 " TODO choose a better termwinkey
 set termwinkey=<C-A>
 
+" how much ctrl+{d,u} scrolls
 set scroll=10
 
 set background=dark
@@ -57,12 +58,17 @@ set autoread
 
 set ttyfast
 
+" new windows are below or to the right
+set splitbelow
+set splitright
+
+" show @@@ if line is truncated
+set display=truncate
 " }}}
 " Explorer Configuration {{{
 
 " remove banner in explore
 let g:netrw_banner = 0
-let g:netrw_liststyle = 4
 
 " }}}
 " Mapping {{{
@@ -111,6 +117,8 @@ map <c-l> <c-a>l
 " gf open file even if it does not exists
 map gf :e <cfile><CR>
 
+map <leader>w :DiffOrig
+
 "}}}
 " Folding {{{
 
@@ -131,6 +139,12 @@ command! MakeTags ! ctags -R .
 command! GF ! go fmt ./...
 command! GR ! go run %:p
 
+" from $VIMRUNTIME/defaults.vim
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
 " }}}
 " Status Line {{{
 
@@ -141,3 +155,21 @@ set statusline=%y\ %f\ %m\ %r\ %w\ %q\ %=%l:%c
 autocmd TerminalOpen * :set nonumber
 autocmd TerminalOpen * :set norelativenumber
 " }}}
+" augroups {{{
+" from $VIMRUNTIME/defaults.vim
+augroup vimStartup
+  au!
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid, when inside an event handler
+  " (happens when dropping a file on gvim) and for a commit message (it's
+  " likely a different one than last time).
+  autocmd BufReadPost *
+  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  \ |   exe "normal! g`\""
+  \ | endif
+
+augroup END
+" }}}
+
+
