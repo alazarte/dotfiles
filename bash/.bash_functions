@@ -1,36 +1,18 @@
 #!/bin/bash
 
-# {{{ variables
+# variables {{{
 # place variables that are only used in these functions
 
 # light
-BRIGHTNESS_MIN=20
+BRIGHTNESS_MIN=1
 BRIGHTNESS_MODIF=100
 BRIGHTNESS_FILE='/sys/class/backlight/intel_backlight/brightness'
 BRIGHTNESS_MAX_FILE='/sys/class/backlight/intel_backlight/max_brightness'
 NOTES_PATH=$HOME/.notes
 
-# mon
-NOTEMON=eDP1
-
 # }}}
 
-# {{{ docker
-# test names command for docker
-function docker
-{
-    case $1 in
-        names)
-        docker ps --format {{.Names}}
-        ;;
-        *)
-        /usr/bin/docker $@
-        ;;
-    esac
-}
-# }}}
-
-# {{{ light
+# light {{{
 function light
 {
     case $1 in
@@ -60,7 +42,7 @@ function light
 }
 # }}}
 
-# {{{ vol
+# vol {{{
 function vol
 {
     LIST=`pacmd list-sinks | grep index -A 1`
@@ -69,24 +51,9 @@ function vol
 }
 # }}}
 
-# {{{ notes
-
-function notes
+# cheat {{{
+function cheat
 {
-    if [ -z $1 ] ; then 
-        $EDITOR $NOTES_PATH
-        return
-    fi
-    if [ "$1" == "-h" ] ; then
-        printf "Usage: help [filename]\n"
-        printf "\tIf no argument then open folder with $EDITOR\n"
-        printf "\tArgument is just the filename without extension,\n"
-        printf "\tall files are txt\n"
-    else
-        $EDITOR $NOTES_PATH/$1.txt
-    fi
+    curl cheat.sh/$1
 }
-
 # }}}
-
-# mon replaced by autorandr

@@ -10,4 +10,5 @@
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 
 stty -ixon
+
 set -o vi

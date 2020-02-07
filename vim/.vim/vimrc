@@ -117,7 +117,7 @@ map <c-l> <c-a>l
 " gf open file even if it does not exists
 map gf :e <cfile><CR>
 
-map <leader>w :DiffOrig
+map <leader>w :w ! diff --color % -<cr>
 
 "}}}
 " Folding {{{
@@ -138,12 +138,6 @@ colorscheme default
 command! MakeTags ! ctags -R .
 command! GF ! go fmt ./...
 command! GR ! go run %:p
-
-" from $VIMRUNTIME/defaults.vim
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif
 
 " }}}
 " Status Line {{{
@@ -171,5 +165,3 @@ augroup vimStartup
 
 augroup END
 " }}}
-
-
