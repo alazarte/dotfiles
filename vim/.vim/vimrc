@@ -142,7 +142,7 @@ command! GR ! go run %:p
 " }}}
 " Status Line {{{
 
-set statusline=%y\ %f\ %m\ %r\ %w\ %q\ %=%l:%c
+set statusline=%y\ %f\ %m\ %r\ %w\ %q\ %=%P\ %l:%c
 
 " }}}
 " autocmds {{{
