@@ -6,11 +6,8 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-scripts/AfterColors.vim'
-Plugin 'junegunn/goyo.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -23,18 +20,21 @@ let mapleader = ","
 " }}}
 " Setters {{{
 
+syntax on
+
 set showcmd
 set relativenumber
 set number
 
 " start search while typing
+set incsearch
 set hlsearch
 
 " hidden buffer to hold changes in current file with changes
 set hidden
 
 " show trailing chars
-set list
+set list lcs=tab:>\ ,trail:.
 
 set tags=tags;
 
@@ -45,6 +45,8 @@ set path=.,,**
 
 " TODO choose a better termwinkey
 set termwinkey=<C-A>
+
+set laststatus=2
 
 " how much ctrl+{d,u} scrolls
 set scroll=10
@@ -61,6 +63,9 @@ set ttyfast
 " new windows are below or to the right
 set splitbelow
 set splitright
+
+set scrolloff=1
+set sidescrolloff=5
 
 " show @@@ if line is truncated
 set display=truncate

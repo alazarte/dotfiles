@@ -13,3 +13,4 @@ alias tf='terraform'
 alias noise='play -q -c 2 --null synth brownnoise band -n 2500 4000 tremolo 20 .1 reverb 50'
 alias zt='zerotier-start'
 alias wtr='curl wttr.in/cba'
+alias g="git"
