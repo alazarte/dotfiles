@@ -1,3 +1,4 @@
+syntax on
 " Vundle config {{{
 
 set nocompatible
@@ -20,8 +21,8 @@ let mapleader = ","
 " }}}
 " Setters {{{
 
-syntax on
-
+set wildmenu
+set wildmode=list:longest:full
 set showcmd
 set relativenumber
 set number
