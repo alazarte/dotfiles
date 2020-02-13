@@ -15,7 +15,9 @@ filetype plugin indent on
 " }}}
 " Letters {{{
 
-let g:netrw_keepdir=0
+" netrw configuration
+let g:netrw_keepdir=1
+let g:netrw_banner = 0
 let mapleader = ","
 
 " }}}
@@ -37,7 +39,7 @@ set hidden
 " show trailing chars
 set list lcs=tab:>\ ,trail:.
 
-set tags=tags;
+set tags=tags,/home/al/go/src/tags;
 
 " . current directory for file
 " current directory ...
@@ -71,12 +73,6 @@ set sidescrolloff=5
 " show @@@ if line is truncated
 set display=truncate
 " }}}
-" Explorer Configuration {{{
-
-" remove banner in explore
-let g:netrw_banner = 0
-
-" }}}
 " Mapping {{{
 
 " Clipboard
@@ -92,7 +88,7 @@ map <leader>v <esc>:e ~/.vim/vimrc<cr>
 map <leader>l <esc>:so ~/.vim/vimrc<cr>
 
 " set path to current file in current tab only
-map <leader>h <esc>:lcd %:h<cr>:pwd<cr>
+map <leader>h <esc>:call LocalChangeDir()<cr>:pwd<cr>
 
 " parsing single line json
 map <leader>jq <esc>:%!jq<cr>
@@ -170,4 +166,13 @@ augroup vimStartup
   \ | endif
 
 augroup END
+" }}}
+" Functions {{{
+function LocalChangeDir()
+	if isdirectory(expand("%"))
+		lcd %
+	else
+		lcd %:h
+	endif
+endfunction
 " }}}
