@@ -8,7 +8,10 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-commentary'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/AfterColors.vim'
+Plugin 'jaredgorski/SpaceCamp'
+Plugin 'vimwiki/vimwiki'
 call vundle#end()
 filetype plugin indent on
 
@@ -20,6 +23,8 @@ let g:netrw_keepdir=1
 let g:netrw_banner = 0
 let mapleader = ","
 
+let g:vimwiki_list = [{'path': '~/my_site/',
+           \ 'syntax': 'markdown', 'ext': '.md'}]
 " }}}
 " Setters {{{
 
@@ -64,21 +69,17 @@ set autoread
 set ttyfast
 
 " new windows are below or to the right
-set splitbelow
-set splitright
+" set splitbelow
+" set splitright
 
 set scrolloff=1
 set sidescrolloff=5
 
 " show @@@ if line is truncated
 set display=truncate
+
 " }}}
 " Mapping {{{
-
-" Clipboard
-" TODO fix this
-map <leader>c :w !xclip -selection clipboard<CR><CR>
-map <leader>C :r!xclip -o<CR>
 
 " spelling
 map <leader>s :setlocal spell! spelllang=en_us<cr>
@@ -132,13 +133,13 @@ set foldmethod=marker           " detect triple-{ style fold markers
 " }}}
 " Colorscheme {{{
 
-colorscheme default
+colorscheme spacecamp
 
 " }}}
 " Commands {{{
 
-command! MakeTags ! ctags -R .
-command! GF ! go fmt ./...
+command! MakeTags ! tags.sh
+command! GF ! go fmt %
 command! GR ! go run %:p
 
 " }}}
@@ -169,10 +170,26 @@ augroup END
 " }}}
 " Functions {{{
 function LocalChangeDir()
-	if isdirectory(expand("%"))
-		lcd %
-	else
-		lcd %:h
-	endif
+    if isdirectory(expand("%"))
+        if expand("%") == ""
+            lcd getcwd()
+        else
+            lcd %
+        endif
+    else
+        lcd %:h
+    endif
 endfunction
-" }}}
+"if &term =~ "xterm"        }}}
+
+if &term =~ "xterm"
+  if has("terminfo")
+    set t_Co=8
+    set t_Sf=<Esc>[3%p1%dm
+    set t_Sb=<Esc>[4%p1%dm
+  else
+    set t_Co=8
+    set t_Sf=<Esc>[3%dm
+    set t_Sb=<Esc>[4%dm
+  endif
+endif
