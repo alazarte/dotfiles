@@ -1,6 +1,4 @@
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
-[user]
-	name = alazarte
 [alias]
 	l = log --pretty=oneline --abbrev-commit
