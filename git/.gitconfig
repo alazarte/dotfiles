@@ -2,10 +2,5 @@
 	insteadOf = https://github.com/
 [user]
 	name = alazarte
-	email = alejandro.lazarte@3xmgroup.com
 [alias]
 	l = log --pretty=oneline --abbrev-commit
-	p = push
-	sw = switch
-	s = status
-	b = branch
