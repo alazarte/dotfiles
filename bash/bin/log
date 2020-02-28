@@ -10,6 +10,18 @@ write_log() {
 	echo "[$timestamp] $@" | tee -a $filename
 }
 
+git_init() {
+	git init
+	git remote add origin git@git.sr.ht:~alazarte/human-log
+	git pull
+	# git init should create a master, then I should do
+	#     git branch -u origin/master master
+	# but it says that master does not exists?
+	# switching or checkout master sets origin/master as tracking branch
+	# and also says that I'm already on branch master
+	git switch master
+}
+
 git_commit() {
 	# git add filename to log
 	git add $filename
@@ -22,16 +34,38 @@ git_push() {
 	git push
 }
 
+checks() {
+	[[ -d .git ]] || git_init
+}
+
 log() {
+	checks
 	write_log "$@"
 	git_commit
 }
+
+show_help() {
+	cat << EOF
+log <arguments>
+log <message>
+
+Available arguments:
+	--help	Show this help message
+	--push	Push to git repository
+	<message>
+		Message to log and commit
+EOF
+}
+
+# create path if it doesn't exists
+[[ -d $logspath ]] || mkdir -p $logspath
 
 # cd to logspath to work with git
 cd $logspath
 
 case "$1" in
-	push) git_push "$@" ;;
+	--help) show_help "$@" ;;
+	--push) git_push "$@" ;;
 	*) log "$@" ;;
 esac
 # go back to where you were working
