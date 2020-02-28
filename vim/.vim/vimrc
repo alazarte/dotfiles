@@ -54,8 +54,6 @@ set path=.,,**
 " TODO choose a better termwinkey
 set termwinkey=<C-A>
 
-set laststatus=2
-
 " how much ctrl+{d,u} scrolls
 set scroll=10
 
@@ -181,7 +179,8 @@ function LocalChangeDir()
     endif
 endfunction
 "if &term =~ "xterm"        }}}
-
+" from :help xterm-color, helps with bright colors? {{{
+" I don't know if I care that much but is something
 if &term =~ "xterm"
   if has("terminfo")
     set t_Co=8
@@ -193,3 +192,4 @@ if &term =~ "xterm"
     set t_Sb=<Esc>[4%dm
   endif
 endif
+" }}}
