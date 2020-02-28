@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# simple init variables
+logspath=$HOME/var/log
+filename=human.log
+
+write_log() {
+	# write log to both stdout and filename, after cd
+	timestamp=`date +%Y/%m/%d\ %H:%M`
+	echo "[$timestamp] $@" | tee -a $filename
+}
+
+git_commit() {
+	# git add filename to log
+	git add $filename
+	# git commit with simple message
+	git commit -m "update $filename"
+	# git push? or log --push to update repo with log?
+}
+
+git_push() {
+	git push
+}
+
+log() {
+	write_log "$@"
+	git_commit
+}
+
+# cd to logspath to work with git
+cd $logspath
+
+case "$1" in
+	push) git_push "$@" ;;
+	*) log "$@" ;;
+esac
+# go back to where you were working
+cd -
