@@ -131,7 +131,7 @@ set foldmethod=marker           " detect triple-{ style fold markers
 " }}}
 " Colorscheme {{{
 
-colorscheme spacecamp
+colorscheme default
 
 " }}}
 " Commands {{{
@@ -192,4 +192,12 @@ if &term =~ "xterm"
     set t_Sb=<Esc>[4%dm
   endif
 endif
+" }}}
+" vimwiki config {{{
+let wiki_1 = {}
+let wiki_1.path = '~/vimwiki/'
+let wiki_1.ext = 'md'
+let wiki_1.syntax = 'markdown'
+let g:vimwiki_list = [wiki_1]
+let g:vimwiki_folding = 'expr'
 " }}}
