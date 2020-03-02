@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# TODO: replace git with keybase, sync should be just copying over the files
+# from logspath over to /keybase/private/{username}/logs or something
+
 # simple init variables
 logspath=$HOME/var/log
 filename=human.log
@@ -12,7 +15,7 @@ write_log() {
 
 git_init() {
 	git init
-	git remote add origin git@git.sr.ht:~alazarte/human-log
+	git remote add origin $GIT_HUMAN_LOG_ORIGIN
 	git pull
 	# git init should create a master, then I should do
 	#     git branch -u origin/master master
@@ -20,11 +23,6 @@ git_init() {
 	# switching or checkout master sets origin/master as tracking branch
 	# and also says that I'm already on branch master
 	git switch master
-}
-
-edit_log() {
-	$EDITOR $logspath/$filename
-	git_commit
 }
 
 git_commit() {
@@ -39,8 +37,18 @@ git_push() {
 	git push
 }
 
+git_pull() {
+	# this should be it...
+	git pull
+}
+
 checks() {
 	[[ -d .git ]] || git_init
+}
+
+edit_log() {
+	$EDITOR $logspath/$filename
+	git_commit
 }
 
 log() {
@@ -51,15 +59,37 @@ log() {
 
 show_help() {
 	cat << EOF
-log <arguments>
-log <message>
+log <arguments> <message>
 
 Available arguments:
-	--help	Show this help message
-	--push	Push to git repository
+	--type -t <type> Write to <type> instead of default
+	--help           Show this help message
+	--push           Push to repo origin
+	--pull           Pull from repo origin
+	--edit           Open log to edit
 	<message>
 		Message to log and commit
+
+WARNING: --type -t flag should be the first argument if going to edit a
+specific log
 EOF
+}
+
+# TODO: add flag to force writing to an un-existing type, creating the file first
+# TODO: add flag to simply create new log
+parse_args_and_run() {
+	case "$1" in
+		# TODO: type sholdn't be the first arg for it to actually work
+		# TODO: add check when file doesn't exists
+		-t|--type) filename=$2.log ; shift ; shift ; parse_args_and_run "$@" ;;
+		--help) show_help "$@" ;;
+		# TODO: instead of having flags to push or pull, use `git -C` and call
+		# log git <git command>
+		--push) git_push "$@" ;;
+		--pull) git_pull "$@" ;;
+		--edit) edit_log "$@" ;;
+		*) log "$@" ;;
+	esac
 }
 
 # create path if it doesn't exists
@@ -68,11 +98,8 @@ EOF
 # cd to logspath to work with git
 cd $logspath
 
-case "$1" in
-	--help) show_help "$@" ;;
-	--push) git_push "$@" ;;
-	--edit) edit_log "$@" ;;
-	*) log "$@" ;;
-esac
+# parse arguments and log
+parse_args_and_run "$@"
+
 # go back to where you were working
 cd -
