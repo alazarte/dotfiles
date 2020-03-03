@@ -10,6 +10,7 @@ hi DiffAdd ctermfg=green ctermbg=black
 hi DiffDelete ctermfg=red ctermbg=black
 hi DiffChange ctermfg=cyan ctermbg=black
 hi DiffText cterm=none ctermfg=grey ctermbg=none
+
 "hi StatusLine cterm=none cterm=bold ctermfg=white ctermbg=black
 "hi StatusLineNC cterm=none ctermfg=white ctermbg=black
 "hi StatusLineTerm term=none cterm=none ctermfg=green ctermbg=black

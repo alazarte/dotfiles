@@ -11,7 +11,6 @@ Plugin 'tpope/vim-commentary'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/AfterColors.vim'
 Plugin 'jaredgorski/SpaceCamp'
-Plugin 'vimwiki/vimwiki'
 call vundle#end()
 filetype plugin indent on
 
