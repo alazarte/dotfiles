@@ -11,6 +11,12 @@ hi DiffDelete ctermfg=red ctermbg=black
 hi DiffChange ctermfg=cyan ctermbg=black
 hi DiffText cterm=none ctermfg=grey ctermbg=none
 
+hi diffRemoved ctermfg=red ctermbg=none
+hi diffAdded ctermfg=green ctermbg=none
+hi diffFile ctermfg=cyan ctermbg=none
+hi diffOldFile ctermfg=cyan ctermbg=none
+hi diffNewFile ctermfg=cyan ctermbg=none
+
 "hi StatusLine cterm=none cterm=bold ctermfg=white ctermbg=black
 "hi StatusLineNC cterm=none ctermfg=white ctermbg=black
 "hi StatusLineTerm term=none cterm=none ctermfg=green ctermbg=black
