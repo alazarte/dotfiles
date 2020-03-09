@@ -12,3 +12,4 @@ export PATH=$PATH:$GOPATH/bin
 export HISTTIMEFORMAT="[%m-%d %H:%M:%S] "
 export HISTSIZE=5000
 export GIT_HUMAN_LOG_ORIGIN="git@git.sr.ht:~alazarte/human-log"
+export STARDICT_DATA_DIR=$HOME/var/stardict
