@@ -20,6 +20,8 @@ hi diffNewFile ctermfg=cyan ctermbg=none
 hi markdownCodeBlock ctermfg=gray ctermbg=none
 hi markdownCode ctermfg=gray ctermbg=none
 
+hi Todo ctermbg=red ctermfg=white cterm=bold
+
 "hi StatusLine cterm=none cterm=bold ctermfg=white ctermbg=black
 "hi StatusLineNC cterm=none ctermfg=white ctermbg=black
 "hi StatusLineTerm term=none cterm=none ctermfg=green ctermbg=black

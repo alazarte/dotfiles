@@ -51,9 +51,6 @@ set tags=tags,/home/al/go/src/tags;
 " ** recursive
 set path=.,,**
 
-" TODO choose a better termwinkey
-set termwinkey=<C-A>
-
 " how much ctrl+{d,u} scrolls
 set scroll=10
 
@@ -70,11 +67,12 @@ set ttyfast
 " set splitbelow
 " set splitright
 
-set scrolloff=1
 set sidescrolloff=5
 
 " show @@@ if line is truncated
 set display=truncate
+
+set laststatus=2
 
 " }}}
 " Mapping {{{
@@ -177,6 +175,9 @@ function LocalChangeDir()
     else
         lcd %:h
     endif
+endfunction
+function NewNote()
+    put =strftime('=== %c ===')
 endfunction
 "if &term =~ "xterm"        }}}
 " from :help xterm-color, helps with bright colors? {{{
