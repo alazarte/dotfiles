@@ -87,35 +87,13 @@ map <leader>l <esc>:so ~/.vim/vimrc<cr>
 " set path to current file in current tab only
 map <leader>h <esc>:call LocalChangeDir()<cr>:pwd<cr>
 
-" parsing single line json
-map <leader>jq <esc>:%!jq<cr>
-
 " generate tags
 nmap <leader>t :MakeTags<cr>
-
-" save as root
-cnoremap w!! w !sudo tee % >/dev/null
-
-" navigate in multi-single lines
-map j gj
-map k gk
-
-" terminal mappings
-tmap <c-j> <c-a>j
-tmap <c-k> <c-a>k
-
-" match c-a term map
-nnoremap <c-a> <c-w>
-
-" navigation with ctrl+{movement}
-map <c-j> <c-a>j
-map <c-k> <c-a>k
-map <c-h> <c-a>h
-map <c-l> <c-a>l
 
 " gf open file even if it does not exists
 map gf :e <cfile><CR>
 
+" check changes in file before saving
 map <leader>w :w ! diff --color % -<cr>
 
 "}}}
@@ -180,20 +158,6 @@ function NewNote()
     put =strftime('=== %c ===')
 endfunction
 "if &term =~ "xterm"        }}}
-" from :help xterm-color, helps with bright colors? {{{
-" I don't know if I care that much but is something
-if &term =~ "xterm"
-  if has("terminfo")
-    set t_Co=8
-    set t_Sf=<Esc>[3%p1%dm
-    set t_Sb=<Esc>[4%p1%dm
-  else
-    set t_Co=8
-    set t_Sf=<Esc>[3%dm
-    set t_Sb=<Esc>[4%dm
-  endif
-endif
-" }}}
 " vimwiki config {{{
 let wiki_1 = {}
 let wiki_1.path = '/keybase/private/alazarte/vimwiki'
