@@ -96,6 +96,10 @@ map gf :e <cfile><CR>
 " check changes in file before saving
 map <leader>w :w ! diff --color % -<cr>
 
+" insert output date to current cursor position
+map <leader>d :r!date '+\%Y-\%m-\%d \%H:\%M'<cr>kJ
+" adding kJ to append to previous line instead of new line
+
 "}}}
 " Folding {{{
 
@@ -143,7 +147,7 @@ augroup vimStartup
 augroup END
 " }}}
 " Functions {{{
-function LocalChangeDir()
+function! LocalChangeDir()
     if isdirectory(expand("%"))
         if expand("%") == ""
             lcd getcwd()
@@ -154,10 +158,7 @@ function LocalChangeDir()
         lcd %:h
     endif
 endfunction
-function NewNote()
-    put =strftime('=== %c ===')
-endfunction
-"if &term =~ "xterm"        }}}
+"}}}
 " vimwiki config {{{
 let wiki_1 = {}
 let wiki_1.path = '/keybase/private/alazarte/vimwiki'
@@ -167,7 +168,7 @@ let g:vimwiki_list = [wiki_1]
 " let g:vimwiki_folding = 'expr'
 " }}}
 " Markdown folding headers {{{
-function MarkdownLevel()
+function! MarkdownLevel()
     let h = matchstr(getline(v:lnum), '^#\+')
     if empty(h)
         return "="
