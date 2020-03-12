@@ -1,0 +1,21 @@
+#!/bin/bash
+
+[[ -z $NOTES_PATH ]] && echo "NOTES_PATH not set"
+notes_path=$NOTES_PATH
+# extension always markdown?
+default_note=personal.md
+
+case $1 in
+	new)
+		# TODO: write date first
+		# TODO: check if date is already present, if yes then don't write date
+		$EDITOR $notes_path/$default_note
+		;;
+	[a-z0-9]*)
+		some_note=$1.md
+		$EDITOR $notes_path/$some_note
+		;;
+	*)
+		$EDITOR $notes_path/$default_note
+		;;
+esac
