@@ -1,6 +1,10 @@
 #!/bin/bash
 
-[[ -z $NOTES_PATH ]] && echo "NOTES_PATH not set"
+# temporal export notes path here
+NOTES_PATH=/keybase/private/alazarte/notes
+export NOTES_PATH
+
+[[ -z $NOTES_PATH ]] && echo "NOTES_PATH not set" && exit 1
 notes_path=$NOTES_PATH
 # extension always markdown?
 default_note=personal.md

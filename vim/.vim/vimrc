@@ -21,7 +21,6 @@ filetype plugin indent on
 " netrw configuration
 let g:netrw_keepdir=1
 let g:netrw_banner = 0
-let mapleader = ","
 
 let g:vimwiki_list = [{'path': '~/my_site/',
            \ 'syntax': 'markdown', 'ext': '.md'}]
@@ -73,6 +72,8 @@ set sidescrolloff=5
 set display=truncate
 
 set laststatus=2
+
+set nowrap
 
 " }}}
 " Mapping {{{
@@ -178,4 +179,6 @@ function! MarkdownLevel()
 endfunction
 au BufEnter *.md setlocal foldexpr=MarkdownLevel()
 au BufEnter *.md setlocal foldmethod=expr
+" TODO: there should be another way of doing this
+au BufEnter *.md syntax keyword Todo TODO
 " }}}
