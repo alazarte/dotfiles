@@ -1,6 +1,6 @@
 syntax on
-" Vundle config {{{
 
+" Vundle config
 set nocompatible
 filetype off
 
@@ -9,129 +9,92 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'vim-scripts/AfterColors.vim'
-Plugin 'jaredgorski/SpaceCamp'
 Plugin 'vimwiki/vimwiki'
 call vundle#end()
 filetype plugin indent on
 
-" }}}
-" Letters {{{
-
-" netrw configuration
-let g:netrw_keepdir=1
-let g:netrw_banner = 0
-
-let g:vimwiki_list = [{'path': '~/my_site/',
-           \ 'syntax': 'markdown', 'ext': '.md'}]
-" }}}
-" Setters {{{
-
+" hidden buffer to hold changes in current file with changes
+set hidden
 set wildmenu
 set wildmode=list:longest:full
 set showcmd
 set relativenumber
 set number
-
 " start search while typing
 set incsearch
 set hlsearch
-
-" hidden buffer to hold changes in current file with changes
-set hidden
-
 " show trailing chars
 set list lcs=tab:>\ ,trail:.
-
-set tags=tags,/home/al/go/src/tags;
-
+set tags=tags
 " . current directory for file
 " current directory ...
 " ** recursive
-set path=.,,**
-
+set path=.,**
 " how much ctrl+{d,u} scrolls
 set scroll=10
+set background=dark
+" write and load changes
+set sidescrolloff=5
+" show @@@ if line is truncated
+set display=truncate
+set laststatus=2
+set nowrap
+set showcmd ruler ttyfast
+set statusline=%y\ %f\ %m\ %r\ %w\ %q\ %=%P\ %l:%c
+
+" Configure netrw
+" keep in the dir where I open netrw
+let g:netrw_keepdir=1
+" no banner
+let g:netrw_banner=0
+
+" Configure colorscheme
+set termguicolors
+let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+
+colorscheme default
 
 set background=dark
 
-" write and load changes
-set autowriteall
-" this probably won't work as expected
-set autoread
+hi LineNr guifg=gray50
+hi CursorLine cterm=none guibg=gray20
+hi CursorLineNr cterm=bold guifg=yellow
+hi SpellBad guifg=white guibg=red
+hi SpellRare guifg=black guibg=cyan
+hi Visual guifg=black
+" TODO: something
 
-set ttyfast
-
-" new windows are below or to the right
-" set splitbelow
-" set splitright
-
-set sidescrolloff=5
-
-" show @@@ if line is truncated
-set display=truncate
-
-set laststatus=2
-
-set nowrap
-
-" }}}
-" Mapping {{{
+hi Todo guibg=red guifg=white cterm=bold
+hi diffRemoved guifg=red guibg=NONE
+hi diffAdded guifg=green guibg=NONE
+hi diffFile guifg=cyan guibg=NONE
+hi diffOldFile guifg=cyan guibg=NONE
+hi diffNewFile guifg=cyan guibg=NONE
+hi markdownCodeBlock guifg=gray guibg=NONE
+hi markdownCode guifg=gray guibg=NONE
 
 " spelling
 map <leader>s :setlocal spell! spelllang=en_us<cr>
-
 " vim config
 map <leader>v <esc>:e ~/.vim/vimrc<cr>
 map <leader>l <esc>:so ~/.vim/vimrc<cr>
-
-" set path to current file in current tab only
-map <leader>h <esc>:call LocalChangeDir()<cr>:pwd<cr>
-
 " generate tags
 nmap <leader>t :MakeTags<cr>
-
 " gf open file even if it does not exists
 map gf :e <cfile><CR>
-
 " check changes in file before saving
-map <leader>w :w ! diff --color % -<cr>
-
+" to mayus 'cause vimwiki mapping...
+map <leader>W :w ! diff --color % -<cr>
 " insert output date to current cursor position
 map <leader>d :r!date '+\%Y-\%m-\%d \%H:\%M'<cr>kJ
 " adding kJ to append to previous line instead of new line
 
-"}}}
-" Folding {{{
+" keep current buffer and delete all the rest
+command! BufOnly silent! execute "%bd|e#|bd#"
+command! MakeTags ! ctags -R --languages=go --exclude=vendor .
 
-set foldenable
-set foldlevel=0
-set foldcolumn=0
-set foldmethod=marker           " detect triple-{ style fold markers
-
-" }}}
-" Colorscheme {{{
-
-colorscheme default
-
-" }}}
-" Commands {{{
-
-command! MakeTags ! tags.sh
-command! GF ! go fmt %
-command! GR ! go run %:p
-
-" }}}
-" Status Line {{{
-
-set statusline=%y\ %f\ %m\ %r\ %w\ %q\ %=%P\ %l:%c
-
-" }}}
-" autocmds {{{
-autocmd TerminalOpen * :set nonumber
-autocmd TerminalOpen * :set norelativenumber
-" }}}
-" augroups {{{
+" augroups
 " from $VIMRUNTIME/defaults.vim
 augroup vimStartup
   au!
@@ -146,29 +109,18 @@ augroup vimStartup
   \ | endif
 
 augroup END
-" }}}
-" Functions {{{
-function! LocalChangeDir()
-    if isdirectory(expand("%"))
-        if expand("%") == ""
-            lcd getcwd()
-        else
-            lcd %
-        endif
-    else
-        lcd %:h
-    endif
-endfunction
-"}}}
-" vimwiki config {{{
+
+" ==== VIMWIKI config ====
+" new config
 let wiki_1 = {}
 let wiki_1.path = '/keybase/private/alazarte/vimwiki'
-" let wiki_1.ext = 'md'
-" let wiki_1.syntax = 'markdown'
+" list of wikis
 let g:vimwiki_list = [wiki_1]
-" let g:vimwiki_folding = 'expr'
-" }}}
-" Markdown folding headers {{{
+
+" Markdown folding headers
+
+" ==== MARKDOWN folding ====
+" TODO this is from stackoverflow, paste URL here
 function! MarkdownLevel()
     let h = matchstr(getline(v:lnum), '^#\+')
     if empty(h)
@@ -177,8 +129,10 @@ function! MarkdownLevel()
         return ">" . len(h)
     endif
 endfunction
+
 au BufEnter *.md setlocal foldexpr=MarkdownLevel()
 au BufEnter *.md setlocal foldmethod=expr
-" TODO: there should be another way of doing this
-au BufEnter *.md syntax keyword Todo TODO
-" }}}
+" syntax
+
+" highlight TODO keyword everywhere
+au BufEnter * syntax keyword Todo TODO
