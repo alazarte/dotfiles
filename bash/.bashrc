@@ -12,3 +12,6 @@
 stty -ixon
 
 set -o vi
+
+# This can set the font in the tty
+# setfont Lat2-Terminus16

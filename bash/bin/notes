@@ -10,10 +10,13 @@ notes_path=$NOTES_PATH
 default_note=personal.md
 
 case $1 in
-	new)
+	--new)
 		# TODO: write date first
 		# TODO: check if date is already present, if yes then don't write date
 		$EDITOR $notes_path/$default_note
+		;;
+	--ls)
+		ls $notes_path
 		;;
 	[a-z0-9]*)
 		some_note=$1.md

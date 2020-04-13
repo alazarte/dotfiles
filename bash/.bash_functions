@@ -1,41 +1,33 @@
 #!/bin/bash
 
-# variables {{{
-# place variables that are only used in these functions
-
 # light
-BRIGHTNESS_MIN=1
-BRIGHTNESS_MODIF=100
-BRIGHTNESS_FILE='/sys/class/backlight/intel_backlight/brightness'
-BRIGHTNESS_MAX_FILE='/sys/class/backlight/intel_backlight/max_brightness'
-NOTES_PATH=$HOME/.notes
 
-# }}}
-
-# light {{{
 function light
 {
+    min=1
+    modif=100
+    file='/sys/class/backlight/intel_backlight/brightness'
+    max_file='/sys/class/backlight/intel_backlight/max_brightness'
     case $1 in
         M*)
-            cat $BRIGHTNESS_MAX_FILE > $BRIGHTNESS_FILE
+            cat $max_file > $file
             ;;
         m*)
-            BRIGHTNESS_MIN=1
-            echo $BRIGHTNESS_MIN > $BRIGHTNESS_FILE
+            echo $min > $file
             ;;
         u*)
-            BRIGHTNESS_CURRENT=`cat $BRIGHTNESS_FILE`
-            echo $(( $BRIGHTNESS_CURRENT + $BRIGHTNESS_MODIF )) > $BRIGHTNESS_FILE
+            current=`cat $file`
+            echo $(( $current + $modif )) > $file
         ;;
         d*)
-            BRIGHTNESS_CURRENT=`cat $BRIGHTNESS_FILE`
-            echo $(( $BRIGHTNESS_CURRENT - $BRIGHTNESS_MODIF )) > $BRIGHTNESS_FILE
+            current=`cat $file`
+            echo $(( $current - $modif )) > $file
         ;;
         [0-9]*)
-            echo $1 > $BRIGHTNESS_FILE
+            echo $1 > $file
         ;;
         *)
-            cat $BRIGHTNESS_FILE
+            cat $file
         ;;
 
     esac
@@ -48,12 +40,5 @@ function vol
     LIST=`pacmd list-sinks | grep index -A 1`
     SINKINDEX=`echo "$LIST" | grep "\* index" | awk '{print $3}'`
     pactl set-sink-volume $SINKINDEX $1%
-}
-# }}}
-
-# cheat {{{
-function cheat
-{
-    curl cheat.sh/$1
 }
 # }}}
