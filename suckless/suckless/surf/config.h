@@ -72,7 +72,7 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
         .v = (const char *[]){ "/bin/sh", "-c", \
              "prop=\"$(printf '%b' \"$(xprop -id $1 $2 " \
              "| sed \"s/^$2(STRING) = //;s/^\\\"\\(.*\\)\\\"$/\\1/\")\" " \
-             "| dmenu -nb \"#000000\" -nf \"#eeeeee\" -fn \"Terminus-12\"" \
+             "| dmenu -nb \"#000000\" -nf \"#eeeeee\" " \
              " -sb \"#000000\" -sf \"#00dd00\" " \
              " -p \"$4\" -w $1)\" && xprop -id $1 -f $3 8s -set $3 \"$prop\"", \
              "surf-setprop", winid, r, s, p, NULL \
@@ -130,7 +130,7 @@ static SiteSpecific certs[] = {
         .v = (char *[]){ "/bin/sh", "-c", \
              "xprop -id $0 -f $1 8s -set $1 " \
              " $(surfraw -p duckduckgo $(sr > /dev/null | tail -n +2 | cut -s -f1 " \
-             " | dmenu -nb \"#000000\" -nf \"#eeeeee\" -fn \"Terminus-12\" " \
+             " | dmenu -nb \"#000000\" -nf \"#eeeeee\" " \
              " -sb \"#000000\" -sf \"#00dd00\" " \
              " -p \"Search:\" -w $1 ))", \
              winid, r, s, p, NULL } }
