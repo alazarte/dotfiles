@@ -1,17 +1,9 @@
-syntax on
-
-" Vundle config
 set nocompatible
-filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'vimwiki/vimwiki'
-call vundle#end()
-filetype plugin indent on
+call plug#begin('~/.vim/plugins')
+Plug 'fatih/vim-go'
+Plug 'vimwiki/vimwiki'
+call plug#end()
 
 " hidden buffer to hold changes in current file with changes
 set hidden
@@ -22,7 +14,7 @@ set showcmd
 set relativenumber
 set number
 " show trailing chars
-set list lcs=tab:>\ ,trail:.
+set list lcs=tab:\>\ ,trail:.
 set tags=tags
 " . current directory for file
 " current directory ...
@@ -43,36 +35,29 @@ let g:netrw_winsize=20
 nmap <leader>e :Lexplore<cr>
 
 " Configure colorscheme
-set termguicolors
-let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
-let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
-
-" colorscheme default
+colorscheme default
 set background=dark
 
-hi LineNr guifg=gray50
-hi CursorLine cterm=NONE guibg=gray10
-hi CursorLineNr cterm=bold guifg=yellow
-hi SpellBad guifg=white guibg=red
-hi SpellRare guifg=black guibg=cyan
-" hi Visual guifg=black
-hi Todo guibg=red guifg=white cterm=bold
-hi Folded guibg=NONE
-hi diffRemoved guifg=red guibg=NONE
-hi diffAdded guifg=green guibg=NONE
-hi diffFile guifg=cyan guibg=NONE
-hi diffOldFile guifg=cyan guibg=NONE
-hi diffNewFile guifg=cyan guibg=NONE
-hi markdownCodeBlock guifg=gray guibg=NONE
-hi markdownCode guifg=gray guibg=NONE
+hi LineNr ctermfg=darkgray
+hi CursorLine cterm=none
+hi CursorLineNr cterm=bold ctermfg=yellow
+hi SpellBad ctermfg=white ctermbg=red
+hi SpellRare ctermfg=black ctermbg=cyan
+hi Todo ctermbg=red ctermfg=white cterm=bold
+hi Visual ctermfg=white ctermbg=blue
+hi diffRemoved ctermfg=red ctermbg=none
+hi diffAdded ctermfg=green ctermbg=none
+hi diffFile ctermfg=cyan ctermbg=none
+hi diffOldFile ctermfg=cyan ctermbg=none
+hi diffNewFile ctermfg=cyan ctermbg=none
+hi markdownCodeBlock ctermfg=gray ctermbg=none
+hi markdownCode ctermfg=gray ctermbg=none
 
 " spelling
 map <leader>s :setlocal spell! spelllang=en_us<cr>
 " vim config
 map <leader>v <esc>:e ~/.vim/vimrc<cr>
 map <leader>l <esc>:so ~/.vim/vimrc<cr>
-" generate tags
-nmap <leader>t :MakeTags<cr>
 " gf open file even if it does not exists
 map gf :e <cfile><CR>
 " check changes in file before saving
@@ -84,7 +69,6 @@ map <leader>d :r!date '+\%Y-\%m-\%d \%H:\%M'<cr>kJ
 
 " keep current buffer and delete all the rest
 command! BufOnly silent! execute "%bd|e#|bd#"
-command! MakeGoTags ! ctags -R --languages=go --exclude=vendor .
 
 " augroups
 " from $VIMRUNTIME/defaults.vim
@@ -100,15 +84,13 @@ augroup vimStartup
   \ | endif
 augroup END
 
-augroup goFmt
-    au!
-    autocmd BufWritePost *.go
-    \ silent exe "! gofmt -w %" | silent exe "edit %" | silent exe "redraw!"
-augroup END
-
 " ==== VIMWIKI config ====
 " new config
 let wiki_1 = {}
-let wiki_1.path = '/keybase/private/alazarte/vimwiki'
+let wiki_1.path = '/home/al/data/vimwiki'
+let wiki_2 = {}
+let wiki_2.path = '~/dev/blog'
+let wiki_2.syntax = 'markdown'
+let wiki_2.ext = '.markdown'
 " list of wikis
-let g:vimwiki_list = [wiki_1]
+let g:vimwiki_list = [wiki_1, wiki_2]
