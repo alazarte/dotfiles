@@ -10,3 +10,4 @@ export HISTTIMEFORMAT="[%m-%d %H:%M:%S] "
 export HISTSIZE=5000
 export STARDICT_DATA_DIR=$HOME/var/stardict
 export PS1=$\ 
+export CDPATH=~/go/src:~/go/src/github.com/EverID:~/dev/das/src

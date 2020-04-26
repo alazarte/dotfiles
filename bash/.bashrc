@@ -9,6 +9,8 @@
 [[ -f ~/.bash_functions ]] && . ~/.bash_functions
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 
+source ~/.password-store/pass.bash-completion
+
 stty -ixon
 
 set -o vi
