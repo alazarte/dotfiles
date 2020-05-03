@@ -3,6 +3,7 @@ set nocompatible
 call plug#begin('~/.vim/plugins')
 Plug 'fatih/vim-go'
 Plug 'vimwiki/vimwiki'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " hidden buffer to hold changes in current file with changes
@@ -84,13 +85,8 @@ augroup vimStartup
   \ | endif
 augroup END
 
-" ==== VIMWIKI config ====
-" new config
+" vimwiki confi
 let wiki_1 = {}
 let wiki_1.path = '/home/al/data/vimwiki'
-let wiki_2 = {}
-let wiki_2.path = '~/dev/blog'
-let wiki_2.syntax = 'markdown'
-let wiki_2.ext = '.markdown'
 " list of wikis
-let g:vimwiki_list = [wiki_1, wiki_2]
+let g:vimwiki_list = [wiki_1]
