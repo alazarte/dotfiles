@@ -10,6 +10,7 @@
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 
 source ~/.password-store/pass.bash-completion
+source /etc/bash_completion.d/git-completion.bash
 
 stty -ixon
 
