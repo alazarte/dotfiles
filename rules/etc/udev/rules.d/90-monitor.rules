@@ -1,1 +1,0 @@
-KERNEL=="card0", SUBSYSTEM=="drm", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="$HOME/.Xauthority", RUN+="xrandr --output HDMI1 --auto && xrandr --output HDMI1 --left-of eDP1"

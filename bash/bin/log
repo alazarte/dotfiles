@@ -92,13 +92,10 @@ parse_args_and_run() {
 	esac
 }
 
-# create path if it doesn't exists
 [[ -d $logspath ]] || mkdir -p $logspath
 
-# cd to logspath to work with git
 cd $logspath
 
-# parse arguments and log
 parse_args_and_run "$@"
 
 # go back to where you were working

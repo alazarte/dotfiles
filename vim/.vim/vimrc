@@ -23,8 +23,8 @@ set tags=tags
 set path=**
 " show @@@ if line is truncated
 set laststatus=2
-set nowrap
 set statusline=%y\ %f\ %m\ %r\ %w\ %q\ %=%P\ %l:%c
+set nowrap
 
 " Configure netrw
 " keep in the dir where I open netrw

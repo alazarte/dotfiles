@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# light
-
 function light
 {
     min=1
@@ -32,13 +30,3 @@ function light
 
     esac
 }
-# }}}
-
-# vol {{{
-function vol
-{
-    LIST=`pacmd list-sinks | grep index -A 1`
-    SINKINDEX=`echo "$LIST" | grep "\* index" | awk '{print $3}'`
-    pactl set-sink-volume $SINKINDEX $1%
-}
-# }}}
