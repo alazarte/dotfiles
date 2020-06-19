@@ -1,5 +1,7 @@
 text-width 80
 
+pager less
+
 bind-key j down
 bind-key k up
 
