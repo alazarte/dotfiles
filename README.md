@@ -9,11 +9,3 @@ name. The destination folder can be changed with the `-t` option to use instead
 of the parent folder.
 
 I also added this gmi syntax highlighting config, if you're insterested.
-
-## installation
-
-Listing packages after the `-S` option:
-
-```
-stow -d stow/ -t $HOME * -S `ls stow/`
-```
