@@ -1,37 +1,26 @@
-set nocompatible
+let $RTP=split(&runtimepath, ',')[0]
+let $RC="$HOME/.vim/vimrc"
 
-call plug#begin('~/.vim/plugins')
-Plug 'vimwiki/vimwiki'
-call plug#end()
+filetype plugin indent on
+syntax on
 
 " hidden buffer to hold changes in current file with changes
 set hidden
-set wildmenu
 set showcmd
-set path=**
-set nowrap
+set path=.,**
+set grepprg=grep\ -n\ 
+set incsearch
+set wildmenu
+set wildmode=list
+"use list instead to check for tabs
+"set list sidescroll=1 listchars=extends:>,precedes:<,tab:>\ ,trail:.
+set noswapfile
+set termwinkey=<C-L>
 
 " Configure colorscheme
-colorscheme simple
+colorscheme default
 set background=dark
 
 map <leader>s :setlocal spell! spelllang=en_us<cr>
-map <leader>n :set number! relativenumber!<cr>
-map <leader>v <esc>:e ~/.vim/vimrc<cr>
-map <leader>l <esc>:so ~/.vim/vimrc<cr>
+
 map gf :e <cfile><CR>
-
-" keep current buffer and delete all the rest
-command! BufOnly silent! execute "%bd|e#|bd#"
-
-" vimwiki confi
-let wiki1 = {}
-let wiki1.path = '/home/al/data/vimwiki/personal'
-let wiki2 = {}
-let wiki2.path = '/home/al/data/vimwiki/das'
-let wiki3 = {}
-let wiki3.path = '/home/al/data/vimwiki/work'
-let wiki4 = {}
-let wiki4.path = '/home/al/data/vimwiki/website'
-" list of wikis
-let g:vimwiki_list = [wiki1, wiki2, wiki3, wiki4]
