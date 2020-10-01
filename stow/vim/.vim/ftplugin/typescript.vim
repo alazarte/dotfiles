@@ -1,3 +1,4 @@
+set expandtab shiftwidth=2 softtabstop=2
 set path=src/**
 set wildignore=*node_modules/*
 set grepprg=grep\ -n\ --exclude-dir=node_modules/
