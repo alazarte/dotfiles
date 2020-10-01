@@ -4,8 +4,6 @@ let $RC="$HOME/.vim/vimrc"
 filetype plugin indent on
 syntax on
 
-" hidden buffer to hold changes in current file with changes
-set hidden
 set showcmd
 set path=.,**
 set grepprg=grep\ -n\  
@@ -15,12 +13,9 @@ set wildmode=list
 "use list instead to check for tabs
 "set list sidescroll=1 listchars=extends:>,precedes:<,tab:>\ ,trail:.
 set noswapfile
-set termwinkey=<C-L>
 
 " Configure colorscheme
 colorscheme default
 set background=dark
 
 map <leader>s :setlocal spell! spelllang=en_us<cr>
-
-map gf :e <cfile><CR>
