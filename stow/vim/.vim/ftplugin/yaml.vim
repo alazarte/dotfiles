@@ -1,1 +1,1 @@
-set tabstop=2 shiftwidth=2 softtabstop=2 foldenable foldmethod=indent
+set tabstop=1 shiftwidth=1 softtabstop=1 foldenable foldmethod=indent
