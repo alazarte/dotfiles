@@ -31,25 +31,6 @@ function light
     esac
 }
 
-function notes
-{
-    notespath=$HOME/data/notes
-    category=misc
-    case $1 in
-        # open all notes
-        e)
-            $EDITOR $notespath
-            ;;
-        n)
-            $EDITOR $notespath/"$2".txt
-            ;;
-        # match part of the note's name
-        *)
-            find $notespath -name "*$1*" -exec $EDITOR {} \; -quit
-            ;;
-    esac
-}
-
 function journal
 {
     JOURNALPATH=$HOME/data/journal
