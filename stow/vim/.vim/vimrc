@@ -1,5 +1,4 @@
 let $RTP=split(&runtimepath, ',')[0]
-let $RC="$HOME/.vim/vimrc"
 
 filetype plugin indent on
 syntax on
@@ -9,12 +8,13 @@ set path=.,**
 set grepprg=grep\ -n\  
 set incsearch
 set wildmenu
-set wildmode=list
-"use list instead to check for tabs
-"set list sidescroll=1 listchars=extends:>,precedes:<,tab:>\ ,trail:.
 set noswapfile
 
-" Configure colorscheme
+" setting these options globally, and modified them for each specific filetype
+set noexpandtab
+set tabstop=8
+set nofoldenable
+
 colorscheme default
 set background=dark
 
