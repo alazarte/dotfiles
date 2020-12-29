@@ -14,6 +14,7 @@ set noswapfile
 set noexpandtab
 set tabstop=8
 set nofoldenable
+set nohls
 
 colorscheme default
 set background=dark
