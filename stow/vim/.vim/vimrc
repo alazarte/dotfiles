@@ -10,6 +10,8 @@ set incsearch
 set wildmenu
 set noswapfile
 set lcs=trail:-,nbsp:+,eol:$
+set laststatus=2
+set nocindent nosmartindent noautoindent
 
 " setting these options globally, and modified them for each specific filetype
 set nofoldenable

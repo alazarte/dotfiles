@@ -11,3 +11,5 @@ source /etc/bash_completion.d/git-completion.bash
 
 stty -ixon
 set -o vi
+
+gpgconf --launch gpg-agent
