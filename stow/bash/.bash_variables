@@ -1,13 +1,10 @@
-export EDITOR=nvim
+export EDITOR=vim
 export MANWIDTH=80
-export BROWSER=surf
 export XDG_CONFIG_HOME=$HOME/.config
 export TERM=tmux-256color
 export GOPATH=`go env GOPATH`
 export GOBIN=`go env GOBIN`
 export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.local/bin/bin:$GOBIN:$PATH
 export HISTORY_LENGTH=2000
-export STARDICT_DATA_DIR=$HOME/data/startdict
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-export MAIL=~/mail
