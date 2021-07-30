@@ -1,6 +1,6 @@
-hi  diffNewFile      cterm=bold        ctermfg=white   
-hi  diffOldFile      cterm=bold        ctermfg=white   
-hi  diffFile         cterm=bold                        
-hi  diffIndexLine    ctermfg=cyan                      
-hi  diffAdded        ctermfg=green                     
-hi  diffRemoved      ctermfg=red                       
+hi  diffNewFile      cterm=bold        ctermfg=black
+hi  diffOldFile      cterm=bold        ctermfg=black   
+hi  diffFile         cterm=bold
+hi  diffIndexLine    ctermfg=darkcyan                      
+hi  diffAdded        ctermfg=darkgreen                     
+hi  diffRemoved      ctermfg=darkred                       

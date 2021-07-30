@@ -1,32 +1,19 @@
 let $RTP=split(&runtimepath, ',')[0]
 
 filetype plugin indent on
-syntax on
+syntax off
 
 set showcmd
 set path=.,**
-set grepprg=grep\ -n\  
+set grepprg=grep\ -nI\  
 set incsearch
-set wildmenu
-set noswapfile
+set wildmenu " wildmode=list
+" set noswapfile
 set lcs=trail:-,nbsp:+,eol:$
-set laststatus=2
-set nocindent nosmartindent noautoindent
-
-" setting these options globally, and modified them for each specific filetype
-set nofoldenable
-set noexpandtab
-set tabstop=8
-set nofoldenable
-set nohls
 
 colorscheme default
-set background=dark
+set background=light
+
+hi Visual ctermbg=gray
 
 map <leader>s :setlocal spell! spelllang=en_us<cr>
-
-let default_wiki = {'path': '~/data/vimwiki/'}
-let aws_wiki = {'path': '~/data/vimwiki/aws/', 'ext':'.md', 'syntax': 'markdown'}
-
-let g:vimwiki_list = [default_wiki, aws_wiki]
-let g:rustfmt_autosave = 1
