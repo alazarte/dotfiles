@@ -1,5 +1,4 @@
 alias cs='xclip -selection clipboard'
-alias tx='tmux a || tmux new -s al'
-alias ls='ls --color -p -F'
-alias g='git'
+alias ls='ls -p -F --color=always'
+alias reme="vim $DOTREMINDERS"
 alias fgpg='gpg-connect-agent updatestartuptty /bye >/dev/null'

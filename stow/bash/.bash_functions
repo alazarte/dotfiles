@@ -38,7 +38,7 @@ function journal
         $EDITOR $JOURNALPATH
         return
     fi
-    format='%Y-%m-%d'
+    format='%Y%m%d'
     case "$1" in
         y)
             whenstring=yesterday
@@ -52,6 +52,6 @@ function journal
             datestring=`date +$format`
             ;;
     esac
-    filepath="$JOURNALPATH/$datestring.txt"
+    filepath="$JOURNALPATH/$datestring"
     $EDITOR $filepath
 }
