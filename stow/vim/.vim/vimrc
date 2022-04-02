@@ -1,7 +1,7 @@
 let $RTP=split(&runtimepath, ',')[0]
 
 filetype plugin indent on
-syntax off
+syntax on
 
 set showcmd
 set path=.,**
@@ -12,8 +12,8 @@ set wildmenu " wildmode=list
 set lcs=trail:-,nbsp:+,eol:$
 
 colorscheme default
-set background=light
+set background=dark
 
-hi Visual ctermbg=gray
+au BufNewFile,BufRead *.ppt,*.ppt setf ppt
 
-map <leader>s :setlocal spell! spelllang=en_us<cr>
+map <leader>s :setlocal spell! spelllang=en<cr>

@@ -33,7 +33,7 @@ function light
 
 function journal
 {
-    JOURNALPATH=$HOME/data/journal
+    JOURNALPATH=$HOME/var/journal
     if [ "$1" == "e" ] ; then
         $EDITOR $JOURNALPATH
         return
