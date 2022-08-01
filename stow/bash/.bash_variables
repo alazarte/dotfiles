@@ -1,13 +1,27 @@
 export EDITOR=vim
 export MANWIDTH=80
-export XDG_CONFIG_HOME=$HOME/.config
 export TERM=tmux-256color
-export GOPATH=`go env GOPATH`
-export GOBIN=`go env GOBIN`
-export PATH=$HOME/bin:$PATH
-export PATH=$GOBIN:$PATH
 export HISTORY_LENGTH=2000
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/docker/bin:$PATH
+export PATH=$HOME/src/go/bin:$PATH
+
+# auth ssh using gpg
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-export DOTREMINDERS=$XDG_CONFIG_HOME/remind/
+
+# apps?
 export MAILPATH=/var/spool/mail/inbox
+export DOTREMINDERS=$XDG_CONFIG_HOME/remind
+export XDG_DATA_HOME=$HOME/.data
+export TERMINAL=st
+
+# cool prompt
+color=32
+export PS1='$(exitcode=$?; [ $exitcode -ne 0 ] && color=31 && exitcode_str="[$exitcode]"; printf "\W \[\e[;${color}m\]$exitcode_str\$ \[\e[m\]")'
+
+# delete
+export LAPTOP_OUTPUT=eDP-1
+export SCREEN_OUTPUT=DP-2-2
+export DEFAULT_SINK_ID=1
+
