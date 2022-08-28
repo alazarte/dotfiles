@@ -7,13 +7,42 @@ set showcmd
 set path=.,**
 set grepprg=grep\ -nI\  
 set incsearch
-set wildmenu " wildmode=list
-" set noswapfile
+set wildmenu
 set lcs=trail:-,nbsp:+,eol:$
+set spelllang=en_us,es
+set laststatus=2
+" I don't want actions like { or } when moving to open a fold
+set foldopen=search
 
 colorscheme default
 set background=dark
 
+" just to change the color of the following comment
+" TITLE:
+hi PreProc      ctermfg=magenta
+
+hi StatusLine   ctermfg=gray
+hi StatusLineNC ctermfg=gray
+hi markdownCode ctermfg=gray
+
+" only needed when opening images with netrw
+let g:netrw_browsex_viewer="feh -F"
+
 au BufNewFile,BufRead *.ppt,*.ppt setf ppt
 
-map <leader>s :setlocal spell! spelllang=en<cr>
+map <leader>s :set spell!<cr>
+map <leader>v :e ~/.vim/vimrc<cr>
+
+function ClearReg()
+  let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"+*/', '\zs')
+  for r in regs
+    call setreg(r, [])
+  endfor
+endfunction
+
+map <leader>c :call ClearReg()<CR>
+
+let g:netrw_liststyle=3
+let g:netrw_banner=0
+let g:netrw_hide=1
+map <leader>e :20Lex<CR>
