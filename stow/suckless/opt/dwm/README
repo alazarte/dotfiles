@@ -1,0 +1,6 @@
+dwm.c also has these custom things:
+
+- x-padding to windows in monocle
+- Custom gap config for each tag
+
+But also contains older patches that I've tried, need to clean up
