@@ -1,20 +1,26 @@
-export EDITOR=vim
-export MANWIDTH=80
-export TERM=tmux-256color
-export HISTORY_LENGTH=2000
+# PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/docker/bin:$PATH
 export PATH=$HOME/src/go/bin:$PATH
+
+# default
+export EDITOR=vim
+export TERMINAL=st
+export BROWSER=librewolf
 
 # auth ssh using gpg
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
-# apps?
+# some program's config
+export MANWIDTH=80
+export TERM=tmux-256color
+export HISTORY_LENGTH=2000
+
+# paths
 export MAILPATH=/var/spool/mail/inbox
 export DOTREMINDERS=$XDG_CONFIG_HOME/remind
 export XDG_DATA_HOME=$HOME/.data
-export TERMINAL=st
 
 # cool prompt
 color=32
