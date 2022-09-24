@@ -58,6 +58,7 @@
 #define TEXTW(X)                (drw_fontset_getwidth(drw, (X)) + lrpad)
 
 #define GAP_TOGGLE 100
+#define PAD_TOGGLE 101
 #define GAP_RESET  0
 
 /* enums */
@@ -120,6 +121,7 @@ typedef struct {
 	int isgap;
 	int realgap;
 	int gappx;
+	int ispad;
 	int gapypad;
 } Gap;
 
@@ -1151,9 +1153,9 @@ monocle(Monitor *m)
 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
 		resize(c,
-				m->wx + gap->gappx + (gap->gappx + gap->gapypad),
+				m->wx + gap->gappx + gap->gapypad,
 				m->wy + gap->gappx,
-				m->ww - (2 * c->bw) - (2*gap->gappx) - (4*gap->gapypad),
+				m->ww - (2 * c->bw) - ((2*gap->gappx) + (2*gap->gapypad)),
 				m->wh - (2 * c->bw) - (2*gap->gappx),
 				0);
 }
@@ -1533,6 +1535,7 @@ gap_copy(Gap *to, const Gap *from)
 	to->realgap = from->realgap;
 	to->gappx   = from->gappx;
 	to->gapypad = from->gapypad;
+	to->ispad   = from->ispad;
 }
 
 void
@@ -1544,16 +1547,20 @@ setgaps(const Arg *arg)
 		case GAP_TOGGLE:
 			p->isgap = 1 - p->isgap;
 			break;
+		case PAD_TOGGLE:
+			p->ispad = 1 - p->ispad;
+			break;
 		case GAP_RESET:
 			gap_copy(p, &default_gap);
 			break;
 		default:
 			p->realgap += arg->i;
 			p->isgap = 1;
+			p->ispad = p->ispad;
 	}
 	p->realgap = MAX(p->realgap, 0);
 	p->gappx = p->realgap * p->isgap;
-	p->gapypad = default_gap.gapypad * p->isgap;
+	p->gapypad = default_gap.gapypad * p->isgap * p->ispad;
 	arrange(selmon);
 }
 
