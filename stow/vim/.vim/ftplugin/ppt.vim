@@ -1,1 +1,0 @@
-command! Go :normal Lzt

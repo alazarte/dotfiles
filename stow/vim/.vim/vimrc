@@ -3,37 +3,58 @@ let $RTP=split(&runtimepath, ',')[0]
 filetype plugin indent on
 syntax on
 
+call plug#begin()
+
+Plug 'junegunn/fzf'
+Plug 'vimwiki/vimwiki'
+Plug 'lepture/vim-jinja'
+
+" live changes when using the :s command
+Plug 'markonm/traces.vim'
+
+" the light coloscheme
+Plug 'w0ng/vim-hybrid'
+
+Plug 'jamessan/vim-gnupg'
+
+" Plug 'govim/govim'
+
+call plug#end()
+
 set showcmd
 set path=.,**
-set grepprg=grep\ -nI\  
+" the 'virtual' dir is what I choose to use to name the virtual env directory in python
+set grepprg=grep\ -niIr\ --exclude-dir={.git,node_modules,venv}
 set incsearch
-set wildmenu
-set lcs=trail:-,nbsp:+,eol:$
+set wildmode=longest:list
 set spelllang=en_us,es
 set laststatus=2
+set mouse=
+set guicursor=
+set hls
+set list
+set listchars=trail:-,lead:.,tab:>\ 
+" set listchars=trail:-,tab:>\ 
+set shortmess-=S
+set conceallevel=0
+set number
+set cursorline
+set noswapfile " TODO it saved my potatoes a few times
+set ignorecase
+set smartcase
+set complete-=i
+
+set foldmethod=marker
 " I don't want actions like { or } when moving to open a fold
 set foldopen=search
+set foldenable
+set conceallevel=0
+set relativenumber
 
-colorscheme default
-set background=dark
+" COLORSCHEME:
+colorscheme mine
 
-" just to change the color of the following comment
-" TITLE:
-hi PreProc      ctermfg=magenta
-
-hi StatusLine   ctermfg=gray
-hi StatusLineNC ctermfg=gray
-hi markdownCode ctermfg=gray
-
-" only needed when opening images with netrw
-let g:netrw_browsex_viewer="feh -F"
-
-au BufNewFile,BufRead *.ppt,*.ppt setf ppt
-
-map <leader>s :set spell!<cr>
-map <leader>v :e ~/.vim/vimrc<cr>
-
-function ClearReg()
+function! ClearReg()
   let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"+*/', '\zs')
   for r in regs
     call setreg(r, [])
@@ -42,7 +63,49 @@ endfunction
 
 map <leader>c :call ClearReg()<CR>
 
-let g:netrw_liststyle=3
+" VARIABLES:
+" only needed when opening images with netrw
+let g:netrw_browsex_viewer="feh -F"
+
+let g:netrw_liststyle=0
 let g:netrw_banner=0
-let g:netrw_hide=1
-map <leader>e :20Lex<CR>
+" let g:netrw_list_hide='^\.[^\.]+'
+let g:netrw_list_hide='^\..'
+
+
+" MAPPINGS:
+nn <leader>s :set spell!<cr>
+nn <leader>v :e $RTP/vimrc<cr>
+nn <leader>o :source $RTP/vimrc<cr>
+nn <leader>e :NERDTreeToggle<cr>
+nn <leader>g :Sr<cr>
+nn <leader>G :grep 
+nn <leader>p :FZF<cr>
+nn <leader>n :windo set number! relativenumber!<cr>
+nn <leader>n :windo set number! relativenumber!<cr>
+nn <c-n>     :tab new<cr>
+
+
+" PLUGINS:
+let g:vimwiki_list = [{ 'path': '~/Documents/wiki' }]
+" For markdown syntax only:
+"let g:vimwiki_list = [{ 'path': '~/Documents/vimwiki',
+"      \ 'syntax': 'markdown', 'ext': '.wiki',
+"      \ 'path_html': '~/Documents/vimwiki/html' }]
+
+
+" COMMANDS:
+command! -nargs=1 Gr :grep --exclude-dir={node_modules,.git,venv} -r <q-args>
+command! Sr :cex system('/home/al/System/bin/,greptodo')
+command! Py :cex system('pycodestyle --exclude=.git,venv --ignore=E501,E201,E202,E203 .')
+" autolint the file: autopep8 -i --ignore=E501,E201,E202,E203 --exclude=venv,.git $(find . -type f | grep -v venv | grep -v pycache)
+
+" meta+backspace sends two keys to terminal, escape and then BS
+inoremap <esc><bs> <c-w>
+" this doesn't work
+" inoremap <m-bs> <c-w>
+
+inoremap <c-w> <nop>
+"cnoremap <m-bs> <c-w>
+"cnoremap <c-w> <nop>
+
