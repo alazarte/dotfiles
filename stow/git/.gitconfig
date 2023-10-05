@@ -1,11 +1,22 @@
-[commit]
-	gpgsign = true
-[tag]
-	gpgsign = true
-[user]
-	name = Alejandro Lazarte
-		email = inbox@alazarte.com
-		signingkey = D4C705248740ADA3F67D1EBE034145273D450AAE
-
 [init]
-	defaultBranch = master
+	defaultBranch = main
+[pager]
+	diff = diff-highlight | less
+	log = diff-highlight | less
+	show = diff-highlight | less
+
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red
+	oldHighlight = 9 52
+	newNormal = green
+	newHighlight = 76 22
+[color "diff"]
+	meta = 61
+	frag = 61 bold
+	func = 100 bold
+	commit = yellow bold
+	old = red
+	new = green
+	whitespace = red reverse
