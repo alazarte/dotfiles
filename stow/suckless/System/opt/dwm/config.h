@@ -3,26 +3,24 @@
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const Gap default_gap        = {.isgap = 1, .realgap = 50, .gappx = 50, .gapypad = 80, .ispad = 1};
-static const unsigned int snap      = 10;       /* snap pixel */
+static const Gap default_gap        = {.isgap = 1, .realgap = 20, .gappx = 20};
+static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int focusonwheel       = 1;
-static const char *fonts[]          = { "Terminus:size=14", "Liberation Sans:size=14" };
-static const char dmenufont[]       = "Terminus:size=14";
-static const char col_black[]       = "#000000";
-static const char col_white[]       = "#ffffff";
+static const char *fonts[]          = { "Terminus:size=13" };
+static const char dmenufont[]       = "Terminus:size=13";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
-static const char col_green[]       = "#00bb00";
-static const char col_red[]         = "#bb0000";
+static const char col_black[]       = "#000000";
+static const char col_red[]         = "#cc3333";
+static const char col_green[]       = "#55cc55";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-    [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-    [SchemeSel]  = { col_green, col_gray1, col_red   },
+	[SchemeNorm] = { col_gray3, col_gray1,  col_gray1 },
+	[SchemeSel]  = { col_gray4,  col_gray1,  col_cyan },
 };
 
 /* tagging */
@@ -33,15 +31,9 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class                instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",               NULL,       NULL,       0,            1,           -1,        50,50,500,500,        5 },
-	{ "Navigator",          NULL,       NULL,       1 << 1,       0,           -1,        50,50,500,500,        5 },
-	{ "librewolf",          NULL,       NULL,       1 << 1,       0,           -1,        50,50,500,500,        5 },
-	{ "Chromium",           NULL,       "Chromium", 1 << 2,       0,           -1,        50,50,500,500,        5 },
-	{ NULL,                 "Chromium", "Chromium", 1 << 2,       0,           -1,        50,50,500,500,        5 },
-	{ "libreoffice-writer", NULL,       NULL,       1 << 3,       0,           -1,        50,50,500,500,        5 },
-	{ "PulseUI",            NULL,       NULL,       1 << 4,       1,           -1,        50,50,500,500,        5 },
-	{ "Zoom Meeting",       NULL,       NULL,       1 << 4,       1,           -1,        50,50,500,500,        5 },
+	/* class      instance    title       tags mask     isfloating   monitor */
+	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -70,36 +62,32 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_gray2, "-sf", col_green, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray3, "-sb", col_gray1, "-sf", col_green, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *printcmd[] = { "flameshot", "gui", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
-static const char *upvol[]    = { "/home/al/bin/,vol", "up",   NULL };
-static const char *downvol[]  = { "/home/al/bin/,vol", "down", NULL };
-static const char *mutevol[]  = { "/home/al/bin/,vol", "mute", NULL };
-static const char *keycmd[]   = { "/home/al/bin/,keyhelp", NULL };
-static const char *downlight[]   = { "/home/al/bin/,light", "down", NULL };
-static const char *uplight[]   = { "/home/al/bin/,light", "up", NULL };
-static const char *downnight[]   = { "/home/al/bin/,sct", "down", NULL };
-static const char *upnight[]   = { "/home/al/bin/,sct", "up", NULL };
+static const char *upvol[]    = { "/home/al/System/bin/,vol", "up",   NULL };
+static const char *downvol[]  = { "/home/al/System/bin/,vol", "down", NULL };
+static const char *mutevol[]  = { "/home/al/System/bin/,vol", "mute", NULL };
+static const char *keycmd[]   = { "/home/al/System/bin/,switchlayout", NULL };
+static const char *downlight[]   = { "/home/al/System/bin/,light", "down", NULL };
+static const char *uplight[]   = { "/home/al/System/bin/,light", "up", NULL };
+static const char *downnight[]   = { "/home/al/System/bin/,sct", "down", NULL };
+static const char *upnight[]   = { "/home/al/System/bin/,sct", "up", NULL };
+static const char *monitorscmd[]   = { "/home/al/System/bin/,switchmonitors", NULL };
+static const char *soundcmd[]   = { "/home/al/System/bin/,switchsound", NULL };
+static const char *rofipass[]   = { "/home/al/System/bin/,password-rofi", NULL };
+static const char *rofiwhen[]   = { "/home/al/System/bin/,when-rofi", NULL };
+static const char *rofissh[]    = { "/home/al/System/bin/,ssh-rofi", NULL };
+static const char *rofiurls[]   = { "/home/al/System/bin/,urls-rofi", NULL };
+static const char *roficaturls[]   = { "/home/al/System/bin/,urls-categories-rofi", NULL };
+// rofi -show combi -modes combi -combi-modes "window,drun,run"
+static const char *rofidmenu[]  = { "/home/al/System/bin/,dmenu-rofi", NULL };
 
-static Key keys[] = {
+static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = rofidmenu } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ 0,                            XK_Print,  spawn,          {.v = printcmd } },
-	{ MODKEY,                       XK_x,      spawn,          {.v = lockcmd } },
-	{ MODKEY,                       XK_o,      spawn,          {.v = keycmd } },
-
-	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
-	{ 0,                            XF86XK_AudioMute, spawn, {.v = mutevol } },
-	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
-
-	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = downlight } },
-	{ 0,                            XF86XK_MonBrightnessUp, spawn, {.v = uplight   } },
-	{ ShiftMask,                    XF86XK_MonBrightnessDown, spawn, {.v = downnight } },
-	{ ShiftMask,                    XF86XK_MonBrightnessUp, spawn, {.v = upnight   } },
-
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -109,7 +97,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,             			XK_c,      killclient,     {0} },
+	{ MODKEY,                       XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -121,11 +109,34 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -5 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +5 } },
+
+	{ MODKEY,                       XK_minus,  setgaps,        {.i = -10 } },
+	{ MODKEY,                       XK_equal,  setgaps,        {.i = +10 } },
 	{ MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = GAP_RESET } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = GAP_TOGGLE} },
-	{ MODKEY|ShiftMask,             XK_p,  setgaps,        {.i = PAD_TOGGLE} },
+
+	{ MODKEY,                       XK_o,      spawn,          {.v = keycmd } },
+	{ MODKEY,                       XK_x,      spawn,          {.v = monitorscmd } },
+	{ MODKEY,                       XK_s,      spawn,          {.v = soundcmd } },
+	{ MODKEY,                       XK_q,      spawn,          {.v = lockcmd } },
+
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = rofipass } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = rofiwhen } },
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = rofissh } },
+	{ MODKEY,                       XK_u,      spawn,          {.v = rofiurls } },
+	{ MODKEY|ShiftMask,             XK_u,      spawn,          {.v = roficaturls } },
+
+	{ 0,                            XK_Print,                spawn, {.v = printcmd } },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
+	{ 0,                            XF86XK_AudioMute,        spawn, {.v = mutevol } },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+
+	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = downlight } },
+	{ 0,                            XF86XK_MonBrightnessUp,   spawn, {.v = uplight   } },
+	{ ShiftMask,                    XF86XK_MonBrightnessDown, spawn, {.v = downnight } },
+	{ ShiftMask,                    XF86XK_MonBrightnessUp,   spawn, {.v = upnight   } },
+
+
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -140,7 +151,7 @@ static Key keys[] = {
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
-static Button buttons[] = {
+static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },

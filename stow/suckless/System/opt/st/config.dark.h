@@ -5,8 +5,13 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Terminus:pixelsize=22:antialias=true:autohint=true";
-static int borderpx = 2;
+// static char *font = "DejaVu Sans Mono:pixelsize=16:antialias=true:autohint=true";
+static char *font = "Fira Code:pixelsize=16:antialias=true:autohint=true";
+// static char *font = "Terminus:pixelsize=20:antialias=true:autohint=true";
+static int borderpx = 0;
+
+/* bg opacity */
+float alpha = 1.0;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -93,26 +98,45 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
+/*
+colorschemes
+	"#db2d20",
+	"#01a252",
+	"#fded02",
+	"#01a0e4",
+	"#a16a94",
+	"#b5e4f4",
+	"#a5a2a2",
+
+	"#ac4142",
+	"#90a959",
+	"#f4bf75",
+	"#6a9fb5",
+	"#aa759f",
+	"#75b5aa",
+	"#d0d0d0",
+*/
+
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
 	"black",
-	"#ff1111",
-	"green3",
-	"#ffff88",
-	"#5588ff",
-	"#ff88ff",
-	"#88ffff",
+	"#ee3333",
+	"#33ee33",
+	"yellow3",
+	"#3c3caa",
+	"magenta3",
+	"cyan3",
 	"gray90",
 
 	/* 8 bright colors */
 	"gray50",
-	"#ff1111",
-	"green",
-	"#ffff88",
-	"#5588ff",
-	"#ff88ff",
-	"#88ffff",
+	"#aa3333",
+	"#33aa33",
+	"yellow",
+	"#3c3cff",
+	"magenta",
+	"cyan",
 	"white",
 
 	[255] = 0,
@@ -120,8 +144,8 @@ static const char *colorname[] = {
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
 	"#555555",
-	"gray90", /* default foreground colour */
-	"black", /* default background colour */
+	"gray80", /* default foreground colour */
+	"#101010", /* default background colour */
 };
 
 
@@ -131,7 +155,7 @@ static const char *colorname[] = {
  */
 unsigned int defaultfg = 258;
 unsigned int defaultbg = 259;
-unsigned int defaultcs = 2;
+unsigned int defaultcs = 5;
 static unsigned int defaultrcs = 257;
 
 /*
@@ -147,8 +171,8 @@ static unsigned int cursorshape = 2;
  * Default columns and rows numbers
  */
 
-static unsigned int cols = 120;
-static unsigned int rows = 42;
+static unsigned int cols = 80;
+static unsigned int rows = 24;
 
 /*
  * Default colour and shape of the mouse cursor
@@ -193,9 +217,9 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
-	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
-	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
+	{ ControlMask,          XK_equal,       zoom,           {.f = +1} },
+	{ ControlMask,          XK_minus,       zoom,           {.f = -1} },
+	{ ControlMask,          XK_0,           zoomreset,      {.f =  0} },
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
