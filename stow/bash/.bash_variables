@@ -1,20 +1,17 @@
 # PATH
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/System/bin:$PATH
 export PATH=$HOME/docker/bin:$PATH
-export PATH=$HOME/src/go/bin:$PATH
+export PATH=$HOME/Programming/go/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # default
-export EDITOR=vim
+export EDITOR=nvim
 export TERMINAL=st
-export BROWSER=librewolf
-
-# auth ssh using gpg
-export GPG_TTY=$(tty)
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export BROWSER=firefox
 
 # some program's config
 export MANWIDTH=80
-export TERM=tmux-256color
+# export TERM=tmux-256color
 export HISTORY_LENGTH=2000
 
 # paths
@@ -30,4 +27,3 @@ export PS1='$(exitcode=$?; [ $exitcode -ne 0 ] && color=31 && exitcode_str="[$ex
 export LAPTOP_OUTPUT=eDP-1
 export SCREEN_OUTPUT=DP-2-2
 export DEFAULT_SINK_ID=1
-
