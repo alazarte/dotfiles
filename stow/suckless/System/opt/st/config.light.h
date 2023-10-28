@@ -6,6 +6,10 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "Fira Code:pixelsize=16:antialias=true:autohint=true";
+static char *font2[] = {
+    "Noto Color Emoji:pixelsize=16:antialias=true:autohint=true",
+    "Hack Nerd Font:pixelsize=16:antialias=true:autohint=true",
+};
 static int borderpx = 0;
 
 /* bg opacity */
@@ -123,7 +127,7 @@ static const char *colorname[] = {
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
 	"#555555",
-	"#dedede", /* default foreground colour */
+	"#eeeeee", /* default foreground colour */
 	"#111111", /* default background colour */
 };
 

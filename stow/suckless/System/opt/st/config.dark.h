@@ -7,6 +7,11 @@
  */
 // static char *font = "DejaVu Sans Mono:pixelsize=16:antialias=true:autohint=true";
 static char *font = "Fira Code:pixelsize=16:antialias=true:autohint=true";
+static char *font2[] = {
+    "Noto Color Emoji:pixelsize=16:antialias=true:autohint=true",
+    "Hack Nerd Font:pixelsize=16:antialias=true:autohint=true",
+};
+
 // static char *font = "Terminus:pixelsize=20:antialias=true:autohint=true";
 static int borderpx = 0;
 

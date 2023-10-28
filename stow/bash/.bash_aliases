@@ -13,4 +13,6 @@ alias which="alias | /usr/bin/which --tty-only --read-alias --show-dot --show-ti
 alias xc='xclip -selection clipboard'
 alias xi='xclip -selection clipboard -t image/png -o > '
 
+alias o='open'
+
 source ~/.bash_aliases.priv
