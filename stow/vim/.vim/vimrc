@@ -2,16 +2,13 @@ let $RTP=split(&runtimepath, ',')[0]
 
 let g:netrw_banner=0
 
+" TODO nice non-intrusive config for Lsp
 let g:lsp_diagnostics_virtual_text_enabled=0
 " virtual text appear below status line instead
-let g:lsp_diagnostics_echo_cursor=1
-
+let g:lsp_diagnostics_echo_cursor=0
 let g:lsp_hover_ui='preview'
 let g:lsp_preview_float=0
 let g:lsp_signature_help_enabled = 0
-
-let g:ycm_server_keep_logfiles = 1
-let g:ycm_server_log_level = 'debug'
 
 source $RTP/plugins.vim
 source $RTP/plugin_settings.vim

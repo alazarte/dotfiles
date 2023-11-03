@@ -16,8 +16,8 @@ Plug 'w0ng/vim-hybrid'
 " Plug 'jamessan/vim-gnupg'
 
 " this is horrible for the terminal
-"Plug 'prabirshrestha/vim-lsp'
-"Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 "Plug 'prabirshrestha/asyncomplete.vim'
 "Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
@@ -29,6 +29,6 @@ Plug 'w0ng/vim-hybrid'
 " Plug 'preservim/nerdtree'
 " Plug 'nvim-tree/nvim-tree.lua'
 
-Plug 'ycm-core/YouCompleteMe'
+" Plug 'ycm-core/YouCompleteMe'
 
 call plug#end()

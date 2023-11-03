@@ -1,7 +1,0 @@
-sct 4500
-/usr/bin/setxkbmap -option "ctrl:nocaps"
-,xrandr big
-
-# trackpoint speed!
-tp_id=$(xinput | grep TrackPoint | sed "s/.*id=\([0-9]\+\).*/\1/")
-xinput --set-prop $tp_id "libinput Accel Speed" 0.8
