@@ -15,4 +15,6 @@ alias xi='xclip -selection clipboard -t image/png -o > '
 
 alias o='open'
 
+alias g='git'
+
 source ~/.bash_aliases.priv

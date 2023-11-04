@@ -20,3 +20,13 @@
 	old = red
 	new = green
 	whitespace = red reverse
+[alias]
+	cm = commit -m
+	a = add
+	au = add -u
+	l = log
+	ls = log --show-signature
+	p = push
+	s = status
+	d = diff
+	dc = diff --cached
