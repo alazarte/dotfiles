@@ -1,6 +1,8 @@
 # dotfiles
 
-## usage
+You need to install [stow](https://archlinux.org/packages/extra/any/stow/)
+
+## stow usage
 
 - `-d` is to set the path with the packages, in my case `stow/`
 - `-t` is where to place them (where to create the links), in my case `$HOME`
