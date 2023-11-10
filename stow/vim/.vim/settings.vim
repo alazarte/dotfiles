@@ -1,3 +1,4 @@
+" SETS:
 set showcmd
 set path=.,**
 " the 'virtual' dir is what I choose to use to name the virtual env directory in python
@@ -36,4 +37,11 @@ set autoread
 " COLORSCHEME:
 set background=light
 colorscheme mine
+
+" LETS:
+" no netrw banner
+let g:netrw_banner=0
+
+" COMMANDS:
+command! Sr :cex system('grep -rin --exclude-dir={node_modules,.git,venv} -E "(TODO|FIXME)"')
 

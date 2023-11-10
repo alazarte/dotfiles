@@ -30,3 +30,4 @@
 	s = status
 	d = diff
 	dc = diff --cached
+	cv = commit -v

@@ -152,9 +152,13 @@ else
   hi! link Constant Blank
 
   hi DiffDelete ctermbg=red ctermfg=52
-  hi DiffAdd ctermbg=green ctermfg=22
+  hi DiffAdd ctermbg=114 ctermfg=22
   hi DiffChange ctermbg=red ctermfg=52
   hi DiffText ctermfg=red ctermbg=52
+
+  hi! link diffDeleted DiffDelete
+  hi! link diffAdded DiffAdd
+  hi! link diffChanged DiffChange
 
   hi Todo ctermbg=184 cterm=bold
 endif
