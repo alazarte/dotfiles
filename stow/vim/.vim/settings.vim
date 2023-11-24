@@ -2,7 +2,7 @@
 set showcmd
 set path=.,**
 " the 'virtual' dir is what I choose to use to name the virtual env directory in python
-set grepprg=grep\ -niIr\ --exclude-dir={.git,node_modules,venv}
+set grepprg=grep\ -niIr\ --exclude-dir={.git,node_modules,venv,.next}
 set incsearch
 set wildmode=longest:list
 set spelllang=en_us,es
@@ -43,5 +43,11 @@ colorscheme mine
 let g:netrw_banner=0
 
 " COMMANDS:
-command! Sr :cex system('grep -rin --exclude-dir={node_modules,.git,venv} -E "(TODO|FIXME)"')
+command! Sr :cex system('grep -rin --exclude-dir={node_modules,.git,venv,.next} -E "(TODO|FIXME)"')
 
+set ttimeoutlen=10
+augroup FastEscape
+	autocmd!
+	au InsertEnter * set timeoutlen=0
+	au InsertLeave * set timeoutlen=1000
+augroup END

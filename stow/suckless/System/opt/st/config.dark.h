@@ -5,13 +5,11 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Sarasa Term J:style=Regular:pixelsize=16:antialias=true:autohint=true";
+static char *font = "Sarasa Term J:style=Regular:size=14:antialias=true:autohint=true";
 static char *font2[] = {
-    "Noto Color Emoji:pixelsize=16:antialias=true:autohint=true",
-    "Hack Nerd Font:pixelsize=16:antialias=true:autohint=true",
+    "Noto Color Emoji:pixelsize=14:antialias=true:autohint=true",
+    "Hack Nerd Font:pixelsize=14:antialias=true:autohint=true",
 };
-
-// static char *font = "Terminus:pixelsize=20:antialias=true:autohint=true";
 static int borderpx = 0;
 
 /* bg opacity */

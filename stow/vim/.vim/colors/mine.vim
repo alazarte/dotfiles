@@ -156,6 +156,12 @@ else
   hi DiffChange ctermbg=red ctermfg=52
   hi DiffText ctermfg=red ctermbg=52
 
+  hi SpellBad ctermbg=217
+  hi SpellCap ctermbg=153
+  hi SpellRare ctermbg=153
+  hi SpellLocal ctermbg=153
+
+
   hi! link diffDeleted DiffDelete
   hi! link diffAdded DiffAdd
   hi! link diffChanged DiffChange
