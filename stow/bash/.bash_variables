@@ -6,7 +6,7 @@ export PATH=$HOME/.local/bin:$PATH
 # default
 export EDITOR=vim
 export TERMINAL=st
-export BROWSER=chromium
+export BROWSER=firefox
 
 # some program's config
 export MANWIDTH=80
@@ -19,12 +19,28 @@ export DOTREMINDERS=$XDG_CONFIG_HOME/remind
 export XDG_DATA_HOME=$HOME/.data
 
 # cool prompt
-color=32
-export PS1='$(exitcode=$?; [ $exitcode -ne 0 ] && color=31 && exitcode_str="[$exitcode]"; printf "\W \[\e[;${color}m\]$exitcode_str\$ \[\e[m\]")'
+begingreen="\033[0;32m"
+beginred="\033[0;31m"
+beginpromptcolor=$begingreen
+begingray="\033[0;37m"
+endpromptcolor="\033[0m"
+export PS1='$(exitcode=$?; [ $exitcode -ne 0 ] && beginpromptcolor=$beginred && exitcode_str="[$exitcode]"; printf "\W $begingray($(jobs | wc -l))$endpromptcolor $beginpromptcolor$exitcode_str\$ $endpromptcolor")'
 
 # delete
 export LAPTOP_OUTPUT=eDP-1
 export SCREEN_OUTPUT=DP-2-2
 export DEFAULT_SINK_ID=1
+
+# pager for man with colors
+export MANPAGER="less -R --use-color -Dd+r -Du+b -DSky"
+
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+export HISTSIZE=1000
+export HISTFILESIZE=2000
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+export HISTCONTROL=ignoreboth
 
 source ~/.bash_variables.priv

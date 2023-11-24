@@ -17,4 +17,8 @@ alias o='open'
 
 alias g='git'
 
+
+alias grep='grep --color=yes -iI'
+alias gr='grep --color=yes -niIr --exclude-dir={.git,node_modules,venv,.next}'
+
 source ~/.bash_aliases.priv
