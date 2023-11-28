@@ -19,12 +19,7 @@ export DOTREMINDERS=$XDG_CONFIG_HOME/remind
 export XDG_DATA_HOME=$HOME/.data
 
 # cool prompt
-begingreen="\033[0;32m"
-beginred="\033[0;31m"
-beginpromptcolor=$begingreen
-begingray="\033[0;37m"
-endpromptcolor="\033[0m"
-export PS1='$(exitcode=$?; [ $exitcode -ne 0 ] && beginpromptcolor=$beginred && exitcode_str="[$exitcode]"; printf "\W $begingray($(jobs | wc -l))$endpromptcolor $beginpromptcolor$exitcode_str\$ $endpromptcolor")'
+PS1='$(exitcode=$?; [ $exitcode -ne 0 ] && beginpromptcolor="\[\e[0;31m\]" && exitcode_str="[$exitcode]" ||  beginpromptcolor="\[\e[0;32m\]" ; printf "\W \[\e[0;37m\]($(jobs | wc -l))\[\e[0m\] $beginpromptcolor$exitcode_str\$ \[\e[0m\]")'
 
 # delete
 export LAPTOP_OUTPUT=eDP-1
