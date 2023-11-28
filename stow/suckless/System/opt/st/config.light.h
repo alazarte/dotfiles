@@ -5,10 +5,10 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Sarasa Term J:style=Regular:size=16:antialias=true:autohint=true";
+static char *font = "Sarasa Term J:style=Regular:size=15:antialias=true:autohint=true";
 static char *font2[] = {
-    "Noto Color Emoji:pixelsize=16:antialias=true:autohint=true",
-    "Hack Nerd Font:pixelsize=16:antialias=true:autohint=true",
+    "Noto Color Emoji:pixelsize=15:antialias=true:autohint=true",
+    "Hack Nerd Font:pixelsize=15:antialias=true:autohint=true",
 };
 static int borderpx = 0;
 
@@ -110,7 +110,7 @@ static const char *colorname[] = {
 	"#4444cc", // blue
 	"#aa44aa", // magenta
 	"#00aacc", // cyan
-	"gray95",  // white
+	"gray50",  // white
 
 	/* 8 bright colors */
 	"#333333",

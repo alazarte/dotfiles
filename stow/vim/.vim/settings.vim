@@ -35,12 +35,16 @@ set statusline=
 set autoread
 
 " COLORSCHEME:
-set background=light
+set background=dark
 colorscheme mine
 
 " LETS:
 " no netrw banner
 let g:netrw_banner=0
+let g:netrw_browsex_viewer="feh -F"
+let g:netrw_liststyle=0
+let g:netrw_banner=0
+let g:netrw_list_hide='^\..'
 
 " COMMANDS:
 command! Sr :cex system('grep -rin --exclude-dir={node_modules,.git,venv,.next} -E "(TODO|FIXME)"')
