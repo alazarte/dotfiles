@@ -8,7 +8,6 @@ nn <leader>g :Sr<cr>
 nn <leader>G :grep 
 nn <leader>p :FZF<cr>
 nn <leader>n :windo set number! relativenumber!<cr>
-nn <leader>n :windo set number! relativenumber!<cr>
 nn <c-n>     :tab new<cr>
 
 " meta+backspace sends two keys to terminal, escape and then BS

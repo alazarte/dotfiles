@@ -3,21 +3,23 @@ syntax on
 
 call plug#begin()
 
-Plug 'junegunn/fzf'
-Plug 'vimwiki/vimwiki'
 Plug 'lepture/vim-jinja'
-
 " live changes when using the :s command
 Plug 'markonm/traces.vim'
 
+
+" Plug 'junegunn/fzf'
+" Plug 'vimwiki/vimwiki'
+
 " the light coloscheme
-Plug 'w0ng/vim-hybrid'
+" Plug 'w0ng/vim-hybrid'
 
 " Plug 'jamessan/vim-gnupg'
 
 " this is horrible for the terminal
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'mattn/vim-lsp-settings'
+
 "Plug 'prabirshrestha/asyncomplete.vim'
 "Plug 'prabirshrestha/asyncomplete-lsp.vim'
 

@@ -35,6 +35,7 @@ if &background ==# "dark"
   hi Visual cterm=NONE ctermfg=NONE ctermbg=238
   hi MatchParen cterm=NONE ctermfg=black ctermbg=gray
   hi ColorColumn ctermbg=235
+  hi Search ctermbg=3 ctermfg=black
 
   " LSP colors
   hi LspErrorText ctermfg=red
@@ -77,7 +78,7 @@ if &background ==# "dark"
   hi! link TabLineFill NonText
   hi! link TabLineSel StatusLine
   hi! link TabLine StatusLineNC
-  hi! link String Folded
+  " hi! link String Folded
   hi! link PreProc Statement
 
   hi! link CursorLineNr StatusLine
@@ -92,7 +93,16 @@ if &background ==# "dark"
   hi DiffChange ctermbg=red ctermfg=52
   hi DiffText ctermfg=red ctermbg=52
 
-  hi Todo cterm=bold ctermbg=3
+  hi Todo cterm=bold ctermbg=3 ctermfg=235
+
+  " todo.txt customization
+  hi TodoItem ctermfg=yellow
+  hi TodoLink ctermfg=lightblue cterm=underline
+  hi! link TodoHeader Title
+  hi! link TodoDone MoreMsg
+  hi! link TodoUrgent ErrorMsg
+  hi! link TodoBold ModeMsg
+  hi TodoMeh ctermfg=245
 
 else
   hi Blank cterm=NONE ctermfg=NONE ctermbg=NONE
@@ -103,11 +113,11 @@ else
   hi Comment cterm=NONE ctermfg=243
   hi Identifier cterm=NONE ctermfg=18 ctermbg=NONE
   hi Folded cterm=NONE ctermfg=NONE ctermbg=235
-  hi Visual cterm=NONE ctermfg=NONE ctermbg=250
+  hi Visual cterm=NONE ctermfg=NONE ctermbg=252
   hi MatchParen cterm=NONE ctermfg=black ctermbg=6
   hi CursorLineNr ctermbg=252 ctermfg=245 cterm=bold
   hi LineNr ctermbg=252 ctermfg=245 cterm=NONE
-  hi Search ctermbg=184
+  hi Search ctermfg=58 ctermbg=3 cterm=none
   hi ColorColumn ctermbg=254
 
   hi Type ctermfg=18
@@ -167,4 +177,16 @@ else
   hi! link diffChanged DiffChange
 
   hi Todo ctermbg=184 cterm=bold
+
+  " todo.txt customization
+  hi TodoItem ctermfg=yellow
+  hi TodoLink ctermfg=blue cterm=underline
+  hi! link TodoHeader Title
+  hi! link TodoDone MoreMsg
+  hi! link TodoUrgent ErrorMsg
+  hi! link TodoBold ModeMsg
+  hi TodoMeh ctermfg=245
+
+  hi ColorColumn ctermbg=252
+
 endif
